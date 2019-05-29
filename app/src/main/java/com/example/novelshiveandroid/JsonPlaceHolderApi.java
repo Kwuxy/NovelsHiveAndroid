@@ -23,8 +23,14 @@ public interface JsonPlaceHolderApi {
     @GET("stories")
     Call<List<Story>> getStories();
 
-    @GET("chapters")
-    Call<List<Chapter>> getChapters();
+    @GET("stories/{id]")
+    Call<Story> getStoryInfos();
+
+    @GET("stories/{id]/storyChapters")
+    Call<List<Chapter>> getStoryChapters();
+
+    @GET("stories/{id]/storyChapters/count")
+    Call<Integer> getStoryChaptersCount();
 
     @GET("tags")
     Call<List<Tag>> getTags();

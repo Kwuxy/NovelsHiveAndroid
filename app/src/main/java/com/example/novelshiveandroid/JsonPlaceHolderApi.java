@@ -47,6 +47,9 @@ public interface JsonPlaceHolderApi {
     @GET("chapters/{id}/publishedCommentaries")
     Call<List<Comment>> getChapterComments(@Path("id") int chapterId);
 
+    @GET("chapters/{id}")
+    Call<Chapter> getChapterInfos(@Path("id") int chapterId);
+
     @GET("tags")
     Call<List<Tag>> getTags();
 }

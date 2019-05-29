@@ -15,4 +15,7 @@ public interface JsonPlaceHolderApi {
 
     @GET("chapters")
     Call<List<Chapter>> getChapters();
+
+    @GET("tags")
+    Call<List<Tag>> getTags();
 }

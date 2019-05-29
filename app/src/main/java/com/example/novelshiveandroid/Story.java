@@ -1,5 +1,7 @@
 package com.example.novelshiveandroid;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Story {
@@ -8,7 +10,10 @@ public class Story {
     private Date publication_date;
     private Date update_date;
     private String title;
+
+    @SerializedName("body")
     private String synopsis;
+
     private String panel;
     private int userId;
     private int storyStatusId;

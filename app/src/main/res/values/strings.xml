@@ -2,6 +2,7 @@
     <string name="app_name">NovelsHive</string>
 
     <!-- LoginActivity -->
+    <string name="title_login_activity">Login to NovelsHive</string>
     <string name="btn_sign_in_label">Sign In</string>
     <string name="et_password_hint">Password</string>
     <string name="et_email_hint">Email</string>

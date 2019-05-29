@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">NovelsHiveAndroid</string>
+    <string name="app_name">NovelsHive</string>
+
+    <!-- LoginActivity -->
+    <string name="btn_sign_in_label">Sign In</string>
+    <string name="et_password_hint">Password</string>
+    <string name="et_email_hint">Email</string>
 </resources>

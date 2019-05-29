@@ -12,4 +12,7 @@ public interface JsonPlaceHolderApi {
 
     @GET("stories")
     Call<List<Story>> getStories();
+
+    @GET("chapters")
+    Call<List<Chapter>> getChapters();
 }

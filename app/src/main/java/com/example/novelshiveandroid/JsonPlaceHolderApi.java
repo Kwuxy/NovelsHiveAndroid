@@ -13,10 +13,12 @@ import com.example.novelshiveandroid.models.Universe;
 import com.example.novelshiveandroid.models.User;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 public interface JsonPlaceHolderApi {
 
@@ -33,7 +35,7 @@ public interface JsonPlaceHolderApi {
     Call<List<Story>> getUserStories(@Path("id") int userId);
 
     @GET("stories")
-    Call<List<Story>> getStories();
+    Call<List<Story>> getStories(@QueryMap Map<String, String> parameters);
 
     @GET("stories/{id]")
     Call<Story> getStoryInfos(@Path("id") int storyId);

@@ -52,4 +52,10 @@ public interface JsonPlaceHolderApi {
 
     @GET("tags")
     Call<List<Tag>> getTags();
+
+    @GET("kinds")
+    Call<List<Kind>> getKinds();
+
+    @GET("ratings")
+    Call<List<Rating>> getRatings();
 }

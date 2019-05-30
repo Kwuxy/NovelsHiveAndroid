@@ -1,5 +1,17 @@
 package com.example.novelshiveandroid;
 
+import com.example.novelshiveandroid.models.Chapter;
+import com.example.novelshiveandroid.models.Comment;
+import com.example.novelshiveandroid.models.Kind;
+import com.example.novelshiveandroid.models.Language;
+import com.example.novelshiveandroid.models.Rating;
+import com.example.novelshiveandroid.models.Status;
+import com.example.novelshiveandroid.models.Story;
+import com.example.novelshiveandroid.models.StoryHasStoryTag;
+import com.example.novelshiveandroid.models.Tag;
+import com.example.novelshiveandroid.models.Universe;
+import com.example.novelshiveandroid.models.User;
+
 import java.util.List;
 
 import retrofit2.Call;

@@ -1,4 +1,4 @@
-package com.example.novelshiveandroid;
+package com.example.novelshiveandroid.models;
 
 public class Kind {
 

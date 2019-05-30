@@ -6,4 +6,9 @@
     <string name="btn_sign_in_label">Sign In</string>
     <string name="et_password_hint">Password</string>
     <string name="et_email_hint">Email</string>
+
+    <!-- Bottom Navigation view -->
+    <string name="bottom_navigation_menu_home">Home</string>
+    <string name="bottom_navigation_menu_favorite">Favorite</string>
+    <string name="bottom_navigation_menu_search">Search</string>
 </resources>

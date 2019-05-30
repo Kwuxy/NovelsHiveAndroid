@@ -58,4 +58,8 @@ public interface JsonPlaceHolderApi {
 
     @GET("ratings")
     Call<List<Rating>> getRatings();
+
+    @GET("universes")
+    Call<List<Universe>> getUniverses();
+
 }

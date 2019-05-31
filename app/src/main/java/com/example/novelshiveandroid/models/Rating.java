@@ -6,4 +6,15 @@ public class Rating {
     private String symbol;
     private String description;
 
+    public int getId() {
+        return id;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

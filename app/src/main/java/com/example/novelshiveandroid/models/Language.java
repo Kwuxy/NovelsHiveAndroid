@@ -6,4 +6,15 @@ public class Language {
     private String name;
     private String symbol;
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
 }

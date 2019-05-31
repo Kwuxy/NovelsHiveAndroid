@@ -2,6 +2,7 @@ package com.example.novelshiveandroid;
 
 import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.models.Comment;
+import com.example.novelshiveandroid.models.Favorite;
 import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.Language;
 import com.example.novelshiveandroid.models.Rating;
@@ -93,5 +94,8 @@ public interface JsonPlaceHolderApi {
 
     @POST("chapters")
     Call<Comment> createComment(@Body Comment comment);
+
+    @POST("favorites")
+    Response addToFavorites(@Body Favorite favorite);
 
 }

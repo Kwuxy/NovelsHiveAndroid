@@ -86,9 +86,12 @@ public interface JsonPlaceHolderApi {
     Call<List<Status>> getStatus();
 
     @POST("users")
-    Call<User> createUser(@Body User user);
+    Call<User> registerUser(@Body User user);
 
     @POST("users/login")
     Response loginUser(String email, String password);
+
+    @POST("chapters")
+    Call<Comment> createComment(@Body Comment comment);
 
 }

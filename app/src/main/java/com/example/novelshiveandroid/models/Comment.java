@@ -12,6 +12,12 @@ public class Comment {
     private int userId;
     private int storyChapterId;
 
+    public Comment(String text, int userId, int storyChapterId) {
+        this.text = text;
+        this.userId = userId;
+        this.storyChapterId = storyChapterId;
+    }
+
     public Integer getId() {
         return id;
     }

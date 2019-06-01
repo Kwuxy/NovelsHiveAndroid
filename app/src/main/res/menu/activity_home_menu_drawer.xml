@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="none">
         <item
             android:id="@+id/activity_home_drawer_profile"
             android:title="@string/navigation_drawer_item_1" />
@@ -11,7 +11,7 @@
 
     <item android:title="Configuration">
         <menu>
-            <group android:checkableBehavior="single">
+            <group android:checkableBehavior="none">
                 <item
                     android:id="@+id/activity_home_drawer_parameters"
                     android:title="@string/navigation_drawer_item_2" />

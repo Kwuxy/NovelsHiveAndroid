@@ -39,17 +39,17 @@ public class HomeActivity extends AppCompatActivity {
                                 myToolbar.setTitle("Home");
                                 fragment = new HomeFragment();
                                 loadFragment(fragment);
-                                break;
+                                return true;
                             case R.id.action_favorite:
                                 myToolbar.setTitle("Favorite");
                                 fragment = new FavoriteFragment();
                                 loadFragment(fragment);
-                                break;
+                                return true;
                             case R.id.action_search:
                                 myToolbar.setTitle("Search");
                                 fragment = new SearchFragment();
                                 loadFragment(fragment);
-                                break;
+                                return true;
                         }
                         return false;
                     }

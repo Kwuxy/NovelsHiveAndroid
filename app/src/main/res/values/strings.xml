@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">NovelsHiveAndroid</string>
+    <string name="app_name">NovelsHive</string>
+
+    <!-- LoginActivity -->
+    <string name="title_login_activity">Login to NovelsHive</string>
+    <string name="btn_sign_in_label">Sign In</string>
+    <string name="et_password_hint">Password</string>
+    <string name="et_email_hint">Email</string>
+
+    <!-- Bottom Navigation view -->
+    <string name="bottom_navigation_menu_home">Home</string>
+    <string name="bottom_navigation_menu_favorite">Favorite</string>
+    <string name="bottom_navigation_menu_search">Search</string>
+
+    <!-- Navigation drawer -->
+    <string name="navigation_drawer_item_1">My profile</string>
+    <string name="navigation_drawer_item_2">Parameters</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

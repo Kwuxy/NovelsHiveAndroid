@@ -2,6 +2,7 @@ package com.example.novelshiveandroid;
 
 import com.example.novelshiveandroid.models.Story;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -15,17 +16,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public abstract class Controller {
 
     // TODO: Change BASE_URL value for prod
-    private String BASE_URL = "http://localhost:3000/api/";
+    private static String BASE_URL = "http://localhost:3000/api/";
 
-    private Retrofit retrofit = new Retrofit.Builder()
+    private static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    private JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+    private static JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-    public List<Story> getStories(Map<String, String> parameters){
-        final List<Story> stories = Collections.emptyList();
+    public static List<Story> getStories(Map<String, String> parameters){
+        final List<Story> stories = new ArrayList<>();
         Call<List<Story>> call = jsonPlaceHolderApi.getStories(parameters);
         call.enqueue(new Callback<List<Story>>() {
             @Override
@@ -35,6 +36,7 @@ public abstract class Controller {
                     return;
                 }
 
+                stories.clear();
                 stories.addAll(response.body());
             }
 

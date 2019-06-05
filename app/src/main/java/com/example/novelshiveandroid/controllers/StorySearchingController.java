@@ -1,4 +1,4 @@
-package com.example.novelshiveandroid;
+package com.example.novelshiveandroid.controllers;
 
 import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.Language;
@@ -9,27 +9,16 @@ import com.example.novelshiveandroid.models.Tag;
 import com.example.novelshiveandroid.models.Universe;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public abstract class Controller {
+import static com.example.novelshiveandroid.controllers.ControllerConfig.jsonPlaceHolderApi;
 
-    // TODO: Change BASE_URL value for prod
-    private static String BASE_URL = "http://localhost:3000/api/";
-
-    private static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
-
-    private static JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+public abstract class StorySearchingController {
 
     //Get Stories With Searching Filters Parameters
     public static List<Story> getStories(Map<String, String> parameters){
@@ -206,5 +195,5 @@ public abstract class Controller {
 
         return status;
     }
-    
+
 }

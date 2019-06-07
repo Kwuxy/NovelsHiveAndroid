@@ -6,6 +6,7 @@ import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.StoryHasStoryTag;
+import com.example.novelshiveandroid.models.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,9 +96,9 @@ public abstract class StoryInfosController {
         return onlyOneRating.get(0);
 
     }
-
-    //Get Story Tags Links
-    public static List<StoryHasStoryTag> getStoryHasStoryTags(int storyId){
+    
+    //Get Story Tags
+    public static List<Tag> getStoryTags(int storyId){
         final List<StoryHasStoryTag> storyTagsLinks = new ArrayList<>();
         Call<List<StoryHasStoryTag>> call = jsonPlaceHolderApi.getStoryHasStoryTags(storyId);
         call.enqueue(new Callback<List<StoryHasStoryTag>>() {
@@ -118,7 +119,28 @@ public abstract class StoryInfosController {
             }
         });
 
-        return storyTagsLinks;
+        final List<Tag> storyTags = new ArrayList<>();
+        Call<Tag> call2;
+        for(StoryHasStoryTag link : storyTagsLinks){
+            call2 = jsonPlaceHolderApi.getStoryTag(link.getId());
+            call2.enqueue(new Callback<Tag>() {
+                @Override
+                public void onResponse(Call<Tag> call2, Response<Tag> response) {
+                    if (!response.isSuccessful()) {
+                        System.out.print("Code : " + response.code());
+                        return;
+                    }
+                    storyTags.add(response.body());
+                }
+
+                @Override
+                public void onFailure(Call<Tag> call2, Throwable t) {
+                    System.out.print(t.getMessage());
+                }
+            });
+        }
+
+        return storyTags;
 
     }
 

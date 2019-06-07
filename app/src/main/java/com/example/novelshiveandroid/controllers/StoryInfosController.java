@@ -2,6 +2,7 @@ package com.example.novelshiveandroid.controllers;
 
 import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.models.Comment;
+import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.StoryHasStoryTag;
 
 import java.util.ArrayList;
@@ -14,6 +15,32 @@ import retrofit2.Response;
 import static com.example.novelshiveandroid.controllers.ControllerConfig.jsonPlaceHolderApi;
 
 public abstract class StoryInfosController {
+
+    //Get Story Infos To Display Presentation Page
+    public static Story getStoryInfos(int storyId){
+        final List<Story> onlyOneStory = new ArrayList<>();
+        Call<Story> call = jsonPlaceHolderApi.getStoryInfos(storyId);
+        call.enqueue(new Callback<Story>() {
+            @Override
+            public void onResponse(Call<Story> call, Response<Story> response) {
+                if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }
+
+                onlyOneStory.clear();
+                onlyOneStory.add(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Story> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+
+        return onlyOneStory.get(0);
+
+    }
 
     //Get Story Tags Links
     public static List<StoryHasStoryTag> getStoryHasStoryTags(int storyId){

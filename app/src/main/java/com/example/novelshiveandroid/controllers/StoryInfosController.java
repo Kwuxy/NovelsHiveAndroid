@@ -122,6 +122,32 @@ public abstract class StoryInfosController {
 
     }
 
+    //Get Story Chapters Count
+    public static Integer getStoryChaptersCount(int storyId){
+        final List<Integer> onlyOneCount = new ArrayList<>();
+        Call<Integer> call = jsonPlaceHolderApi.getStoryChaptersCount(storyId);
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }
+
+                onlyOneCount.clear();
+                onlyOneCount.add(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+
+        return onlyOneCount.get(0);
+
+    }
+
     //Get Story Chapters List
     public static List<Chapter> getStoryChapters(int storyId){
         final List<Chapter> storyChapters = new ArrayList<>();

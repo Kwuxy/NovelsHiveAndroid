@@ -31,8 +31,6 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                stories.clear();
                 stories.addAll(response.body());
             }
 
@@ -57,8 +55,6 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                tags.clear();
                 tags.addAll(response.body());
             }
 
@@ -82,8 +78,6 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                kinds.clear();
                 kinds.addAll(response.body());
             }
 
@@ -107,8 +101,6 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                ratings.clear();
                 ratings.addAll(response.body());
             }
 
@@ -132,8 +124,6 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                universes.clear();
                 universes.addAll(response.body());
             }
 
@@ -157,8 +147,6 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                languages.clear();
                 languages.addAll(response.body());
             }
 
@@ -182,8 +170,6 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                status.clear();
                 status.addAll(response.body());
             }
 

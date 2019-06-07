@@ -30,8 +30,6 @@ public abstract class StoryInfosController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                onlyOneStory.clear();
                 onlyOneStory.add(response.body());
             }
 
@@ -56,8 +54,6 @@ public abstract class StoryInfosController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                onlyOneKind.clear();
                 onlyOneKind.add(response.body());
             }
 
@@ -82,8 +78,6 @@ public abstract class StoryInfosController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                onlyOneRating.clear();
                 onlyOneRating.add(response.body());
             }
 
@@ -96,7 +90,7 @@ public abstract class StoryInfosController {
         return onlyOneRating.get(0);
 
     }
-    
+
     //Get Story Tags
     public static List<Tag> getStoryTags(int storyId){
         final List<StoryHasStoryTag> storyTagsLinks = new ArrayList<>();
@@ -108,8 +102,6 @@ public abstract class StoryInfosController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                storyTagsLinks.clear();
                 storyTagsLinks.addAll(response.body());
             }
 
@@ -155,8 +147,6 @@ public abstract class StoryInfosController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                onlyOneCount.clear();
                 onlyOneCount.add(response.body());
             }
 
@@ -181,8 +171,6 @@ public abstract class StoryInfosController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                storyChapters.clear();
                 storyChapters.addAll(response.body());
             }
 
@@ -207,8 +195,6 @@ public abstract class StoryInfosController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                onlyOneChapter.clear();
                 onlyOneChapter.add(response.body());
             }
 
@@ -233,8 +219,6 @@ public abstract class StoryInfosController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                chapterComments.clear();
                 chapterComments.addAll(response.body());
             }
 

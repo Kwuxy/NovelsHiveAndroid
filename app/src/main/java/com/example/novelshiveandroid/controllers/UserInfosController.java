@@ -25,8 +25,6 @@ public abstract class UserInfosController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                onlyOneUser.clear();
                 onlyOneUser.add(response.body());
             }
 
@@ -50,8 +48,6 @@ public abstract class UserInfosController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                userFavorites.clear();
                 userFavorites.addAll(response.body());
             }
 
@@ -76,8 +72,6 @@ public abstract class UserInfosController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-
-                userStories.clear();
                 userStories.addAll(response.body());
             }
 

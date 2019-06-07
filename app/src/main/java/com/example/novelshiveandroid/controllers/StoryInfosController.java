@@ -148,6 +148,32 @@ public abstract class StoryInfosController {
 
     }
 
+    //Get Chapter Infos To Display It
+    public static Chapter getChapterInfos(int chapterId){
+        final List<Chapter> onlyOneChapter = new ArrayList<>();
+        Call<Chapter> call = jsonPlaceHolderApi.getChapterInfos(chapterId);
+        call.enqueue(new Callback<Chapter>() {
+            @Override
+            public void onResponse(Call<Chapter> call, Response<Chapter> response) {
+                if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }
+
+                onlyOneChapter.clear();
+                onlyOneChapter.add(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Chapter> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+
+        return onlyOneChapter.get(0);
+
+    }
+
     //Get Chapter Published Comments
     public static List<Comment> getChapterComments(int chapterId){
         final List<Comment> chapterComments = new ArrayList<>();
@@ -173,4 +199,5 @@ public abstract class StoryInfosController {
         return chapterComments;
 
     }
+
 }

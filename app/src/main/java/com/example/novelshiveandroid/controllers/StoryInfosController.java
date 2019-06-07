@@ -2,6 +2,7 @@ package com.example.novelshiveandroid.controllers;
 
 import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.models.Comment;
+import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.StoryHasStoryTag;
 
@@ -39,6 +40,32 @@ public abstract class StoryInfosController {
         });
 
         return onlyOneStory.get(0);
+
+    }
+
+    //Get Story Kind
+    public static Kind getStoryKind(int storyId){
+        final List<Kind> onlyOneKind = new ArrayList<>();
+        Call<Kind> call = jsonPlaceHolderApi.getStoryKind(storyId);
+        call.enqueue(new Callback<Kind>() {
+            @Override
+            public void onResponse(Call<Kind> call, Response<Kind> response) {
+                if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }
+
+                onlyOneKind.clear();
+                onlyOneKind.add(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Kind> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+
+        return onlyOneKind.get(0);
 
     }
 

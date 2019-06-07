@@ -3,6 +3,7 @@ package com.example.novelshiveandroid.controllers;
 import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.models.Comment;
 import com.example.novelshiveandroid.models.Kind;
+import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.StoryHasStoryTag;
 
@@ -66,6 +67,32 @@ public abstract class StoryInfosController {
         });
 
         return onlyOneKind.get(0);
+
+    }
+
+    //Get Story Rating
+    public static Rating getStoryRating(int storyId){
+        final List<Rating> onlyOneRating = new ArrayList<>();
+        Call<Rating> call = jsonPlaceHolderApi.getStoryRating(storyId);
+        call.enqueue(new Callback<Rating>() {
+            @Override
+            public void onResponse(Call<Rating> call, Response<Rating> response) {
+                if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }
+
+                onlyOneRating.clear();
+                onlyOneRating.add(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Rating> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+
+        return onlyOneRating.get(0);
 
     }
 

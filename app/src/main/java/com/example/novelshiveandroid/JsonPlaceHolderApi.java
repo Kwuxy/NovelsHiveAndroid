@@ -48,19 +48,19 @@ public interface JsonPlaceHolderApi {
     Call<List<Story>> getStories(@QueryMap Map<String, String> parameters);
 
     //Get Story Infos To Display Presentation Page
-    @GET("stories/{id]")
+    @GET("stories/{id}")
     Call<Story> getStoryInfos(@Path("id") int storyId);
 
     //Get Story Kind
-    @GET("stories/{id]/storyKind")
+    @GET("stories/{id}/storyKind")
     Call<Kind> getStoryKind(@Path("id") int storyId);
 
     //Get Story Rating
-    @GET("stories/{id]/storyRating")
+    @GET("stories/{id}/storyRating")
     Call<Rating> getStoryRating(@Path("id") int storyId);
 
     //Get Story Tags Links
-    @GET("stories/{id]/storyHasStoryTags")
+    @GET("stories/{id}/storyHasStoryTags")
     Call<List<StoryHasStoryTag>> getStoryHasStoryTags(@Path("id") int storyId);
 
     //Get Tags Linked To A Story
@@ -68,11 +68,11 @@ public interface JsonPlaceHolderApi {
     Call<Tag> getStoryTag(@Path("id") int storyHasStoryTagId);
 
     //Get Story Chapters List
-    @GET("stories/{id]/storyChapters")
+    @GET("stories/{id}/storyChapters")
     Call<List<Chapter>> getStoryChapters(@Path("id") int storyId);
 
     //Get Story Chapters Count
-    @GET("stories/{id]/storyChapters/count")
+    @GET("stories/{id}/storyChapters/count")
     Call<Integer> getStoryChaptersCount(@Path("id") int storyId);
 
     //Get Chapter Published Comments
@@ -124,6 +124,6 @@ public interface JsonPlaceHolderApi {
     Response addToFavorites(@Body Favorite favorite);
 
     //Change User Reading Environment (or Update User Infos If Needed Later)
-    @PATCH("users/{id]")
+    @PATCH("users/{id}")
     Call<User> updateUser(@Path("id") int id, @Body User user);
 }

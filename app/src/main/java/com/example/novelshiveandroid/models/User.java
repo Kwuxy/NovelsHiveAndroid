@@ -20,6 +20,7 @@ public class User {
     private Boolean emailVerified;
     private String verificationToken;
 
+    //Constructor With All User Infos
     public User(String description, String password, String email, Integer font_size,
                 String font_family, String theme, String realm, String username) {
         this.description = description;
@@ -30,6 +31,21 @@ public class User {
         this.font_family = font_family;
         this.theme = theme;
         this.realm = realm;
+        this.username = username;
+        this.emailVerified = false;
+        this.verificationToken = null;
+    }
+
+    //Constructor To Register
+    public User(String email, String password, String username){
+        this.description = null;
+        this.password = password;
+        this.email = email;
+        this.admin = false;
+        this.font_size = 11;
+        this.font_family = "Arial";
+        this.theme = "light";
+        this.realm = null;
         this.username = username;
         this.emailVerified = false;
         this.verificationToken = null;

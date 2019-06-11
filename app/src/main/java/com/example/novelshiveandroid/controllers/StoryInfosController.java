@@ -15,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.novelshiveandroid.controllers.ControllerConfig.jsonPlaceHolderApi;
+import static com.example.novelshiveandroid.APIClient.jsonPlaceHolderApi;
 
 public abstract class StoryInfosController {
 

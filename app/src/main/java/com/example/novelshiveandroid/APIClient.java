@@ -1,11 +1,11 @@
-package com.example.novelshiveandroid.controllers;
+package com.example.novelshiveandroid;
 
 import com.example.novelshiveandroid.JsonPlaceHolderApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public abstract class ControllerConfig {
+public abstract class APIClient {
 
     // TODO: Change BASE_URL value for prod
     private static String BASE_URL = "http://192.168.1.47:3000/api/";

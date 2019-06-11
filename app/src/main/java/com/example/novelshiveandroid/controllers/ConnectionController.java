@@ -1,23 +1,17 @@
 package com.example.novelshiveandroid.controllers;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.User;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.novelshiveandroid.controllers.ControllerConfig.jsonPlaceHolderApi;
+import static com.example.novelshiveandroid.APIClient.jsonPlaceHolderApi;
 
-public abstract class ConnectionConfig {
+public abstract class ConnectionController {
 
     public static void registerUser(final Context context, String email, String password, String username){
         User user = new User(email, password, username);

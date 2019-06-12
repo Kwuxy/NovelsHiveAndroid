@@ -10,6 +10,7 @@ import com.example.novelshiveandroid.models.Status;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.StoryHasStoryTag;
 import com.example.novelshiveandroid.models.Tag;
+import com.example.novelshiveandroid.models.Token;
 import com.example.novelshiveandroid.models.Universe;
 import com.example.novelshiveandroid.models.User;
 
@@ -19,6 +20,8 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -112,8 +115,9 @@ public interface JsonPlaceHolderApi {
     Call<User> registerUser(@Body User user);
 
     //User Login
+    @FormUrlEncoded
     @POST("users/login")
-    Response loginUser(String email, String password);
+    Call<Token> loginUser(@Field("username") String email, @Field("password") String password);
 
     //Create A Published Comment About A Chapter (Drafted Commentaries not need in Android App)
     @POST("published_commentaries")

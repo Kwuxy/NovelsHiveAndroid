@@ -48,7 +48,7 @@ public interface JsonPlaceHolderApi {
 
     //Get All Stories With And Without Search Sorting
     @GET("stories")
-    Call<List<Story>> getStories(@QueryMap Map<String, String> parameters);
+    Call<List<Story>> getStories(@QueryMap Map<String, Object> parameters);
 
     //Get Story Infos To Display Presentation Page
     @GET("stories/{id}")

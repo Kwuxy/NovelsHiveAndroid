@@ -21,7 +21,7 @@ import static com.example.novelshiveandroid.APIClient.jsonPlaceHolderApi;
 public abstract class StorySearchingController {
 
     //Get Stories With Searching Filters Parameters
-    public static List<Story> getStories(Map<String, String> parameters){
+    public static List<Story> getStories(Map<String, Object> parameters){
         final List<Story> stories = new ArrayList<>();
         Call<List<Story>> call = jsonPlaceHolderApi.getStories(parameters);
         call.enqueue(new Callback<List<Story>>() {

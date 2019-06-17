@@ -15,5 +15,6 @@ public interface StoryView {
     void displayStoryRating(Rating rating);
     void displayStoryTags(List<Tag> tags);
     void displayStoryChapters(List<Chapter> chapters);
+    void displayStoryChaptersCount(Integer count);
     void displayStoryChaptersComments(List<Comment> comments);
 }

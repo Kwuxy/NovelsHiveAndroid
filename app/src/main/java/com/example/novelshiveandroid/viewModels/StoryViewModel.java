@@ -150,6 +150,26 @@ public class StoryViewModel implements StoryPresenter {
     }
 
     @Override
+    public void getStoryChaptersCount(int storyId){
+        Call<Integer> call = jsonPlaceHolderApi.getStoryChaptersCount(storyId);
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }
+                mStoryView.displayStoryChaptersCount(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+    }
+
+    @Override
     public void getStoryChapterComments(int chapterId) {
         Call<List<Comment>> call = jsonPlaceHolderApi.getChapterComments(chapterId);
         call.enqueue(new Callback<List<Comment>>() {

@@ -6,5 +6,6 @@ public interface StoryPresenter {
     void getStoryRating(int storyId);
     void getStoryTags(int storyId);
     void getStoryChapters(int storyId);
+    void getStoryChaptersCount(int storyId);
     void getStoryChapterComments(int chapterId);
 }

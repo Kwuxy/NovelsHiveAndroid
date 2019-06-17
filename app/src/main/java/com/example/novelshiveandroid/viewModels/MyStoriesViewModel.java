@@ -1,8 +1,8 @@
 package com.example.novelshiveandroid.viewModels;
 
 import com.example.novelshiveandroid.models.Story;
-import com.example.novelshiveandroid.presenters.FavoritePresenter;
-import com.example.novelshiveandroid.views.FavoriteView;
+import com.example.novelshiveandroid.presenters.MyStoriesPresenter;
+import com.example.novelshiveandroid.views.MyStoriesView;
 
 import java.util.List;
 
@@ -12,17 +12,17 @@ import retrofit2.Response;
 
 import static com.example.novelshiveandroid.APIClient.jsonPlaceHolderApi;
 
-public class FavoriteViewModel implements FavoritePresenter {
+public class MyStoriesViewModel implements MyStoriesPresenter {
 
-    FavoriteView mFavoriteView;
+    MyStoriesView mMyStoriesView;
 
-    public FavoriteViewModel(FavoriteView mFavoriteView) {
-        this.mFavoriteView = mFavoriteView;
+    public MyStoriesViewModel(MyStoriesView mMyStoriesView) {
+        this.mMyStoriesView = mMyStoriesView;
     }
 
     @Override
-    public void getUserFavorites(int userId) {
-        Call<List<Story>> call = jsonPlaceHolderApi.getUserFavorites(userId);
+    public void getUserStories(int userId) {
+        Call<List<Story>> call = jsonPlaceHolderApi.getUserStories(userId);
         call.enqueue(new Callback<List<Story>>() {
             @Override
             public void onResponse(Call<List<Story>> call, Response<List<Story>> response) {
@@ -30,7 +30,7 @@ public class FavoriteViewModel implements FavoritePresenter {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                mFavoriteView.displayUserFavorites(response.body());
+                mMyStoriesView.displayUserStories(response.body());
             }
 
             @Override

@@ -17,7 +17,9 @@ public class HomeViewModel implements HomePresenter {
 
     HomeView mHomeView;
 
-    public HomeViewModel(HomeView homeView) { this.mHomeView = homeView; }
+    public HomeViewModel(HomeView homeView) {
+        this.mHomeView = homeView;
+    }
 
     @Override
     public void searchStories(Map<String, Object> parameters) {

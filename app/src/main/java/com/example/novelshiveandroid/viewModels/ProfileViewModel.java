@@ -14,6 +14,10 @@ public class ProfileViewModel implements ProfilePresenter {
 
     ProfileView mProfileView;
 
+    public ProfileViewModel(ProfileView mProfileView) {
+        this.mProfileView = mProfileView;
+    }
+
     @Override
     public void getUserInfos(int userId) {
         Call<User> call = jsonPlaceHolderApi.getUserInfos(userId);

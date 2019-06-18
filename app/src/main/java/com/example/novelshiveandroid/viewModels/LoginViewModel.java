@@ -26,28 +26,29 @@ public class LoginViewModel implements LoginPresenter {
 
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
             mLoginView.loginValidations();
+            return;
         }
-        else {
-            Call<Token> call = jsonPlaceHolderApi.loginUser(email, password);
 
-            call.enqueue(new Callback<Token>() {
-                @Override
-                public void onResponse(Call<Token> call, Response<Token> response) {
-                    if(!response.isSuccessful()){
-                        mLoginView.loginUnsuccessful();
-                        return;
-                    }
-                    setTokenOnGlobals(response.body());
-                    mLoginView.loginSuccess();
-                }
+        Call<Token> call = jsonPlaceHolderApi.loginUser(email, password);
 
-                @Override
-                public void onFailure(Call<Token> call, Throwable t) {
-                    System.out.print(t.getMessage());
-                    mLoginView.loginFailure();
+        call.enqueue(new Callback<Token>() {
+            @Override
+            public void onResponse(Call<Token> call, Response<Token> response) {
+                if(!response.isSuccessful()){
+                    mLoginView.loginUnsuccessful();
+                    return;
                 }
-            });
-        }
+                setTokenOnGlobals(response.body());
+                mLoginView.loginSuccess();
+            }
+
+            @Override
+            public void onFailure(Call<Token> call, Throwable t) {
+                System.out.print(t.getMessage());
+                mLoginView.loginFailure();
+            }
+        });
+
     }
 
     @Override

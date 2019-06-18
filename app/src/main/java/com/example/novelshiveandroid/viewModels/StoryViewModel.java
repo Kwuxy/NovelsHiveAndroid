@@ -2,6 +2,7 @@ package com.example.novelshiveandroid.viewModels;
 
 import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.models.Comment;
+import com.example.novelshiveandroid.models.Favorite;
 import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Story;
@@ -184,6 +185,27 @@ public class StoryViewModel implements StoryPresenter {
 
             @Override
             public void onFailure(Call<List<Comment>> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void addToFavorites(int userId, int storyId) {
+        Favorite favorite = new Favorite(userId, storyId);
+        Call<Favorite> call = jsonPlaceHolderApi.addToFavorites(favorite);
+        call.enqueue(new Callback<Favorite>() {
+            @Override
+            public void onResponse(Call<Favorite> call, Response<Favorite> response) {
+                if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }
+                mStoryView.displayFavoriteAdding();
+            }
+
+            @Override
+            public void onFailure(Call<Favorite> call, Throwable t) {
                 System.out.print(t.getMessage());
             }
         });

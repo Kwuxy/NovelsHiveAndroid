@@ -125,7 +125,7 @@ public interface JsonPlaceHolderApi {
 
     //Add Story as Favorite
     @POST("favorites")
-    Response addToFavorites(@Body Favorite favorite);
+    Call<Favorite> addToFavorites(@Body Favorite favorite);
 
     //Change User Reading Environment (or Update User Infos If Needed Later)
     @PATCH("users/{id}")

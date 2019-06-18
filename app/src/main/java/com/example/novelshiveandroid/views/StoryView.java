@@ -17,4 +17,6 @@ public interface StoryView {
     void displayStoryChapters(List<Chapter> chapters);
     void displayStoryChaptersCount(Integer count);
     void displayStoryChaptersComments(List<Comment> comments);
+
+    void displayFavoriteAdding();
 }

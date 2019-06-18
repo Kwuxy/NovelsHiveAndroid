@@ -8,4 +8,6 @@ public interface StoryPresenter {
     void getStoryChapters(int storyId);
     void getStoryChaptersCount(int storyId);
     void getStoryChapterComments(int chapterId);
+
+    void addToFavorites(int userId, int storyId);
 }

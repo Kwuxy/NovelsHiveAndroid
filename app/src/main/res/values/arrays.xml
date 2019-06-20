@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_message_font_size_entries">
+        <item>@string/arrays__small</item>
+        <item>@string/arrays__normal</item>
+        <item>@string/arrays__large</item>
+        <item>@string/arrays__extra_large</item>
+    </string-array>
+
+    <string-array name="pref_text_font_size_values">
+        <item>13</item>
+        <item>16</item>
+        <item>20</item>
+        <item>30</item>
+    </string-array>
+
+</resources>

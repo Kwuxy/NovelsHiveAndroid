@@ -1,52 +1,32 @@
-package com.example.novelshiveandroid.controllers;
+package com.example.novelshiveandroid.viewModels;
 
 import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.Language;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Status;
-import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.Tag;
 import com.example.novelshiveandroid.models.Universe;
+import com.example.novelshiveandroid.presenters.SearchPresenter;
+import com.example.novelshiveandroid.views.SearchView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.novelshiveandroid.controllers.ControllerConfig.jsonPlaceHolderApi;
+import static com.example.novelshiveandroid.APIClient.jsonPlaceHolderApi;
 
-public abstract class StorySearchingController {
+public class SearchViewModel implements SearchPresenter {
 
-    //Get Stories With Searching Filters Parameters
-    public static List<Story> getStories(Map<String, String> parameters){
-        final List<Story> stories = new ArrayList<>();
-        Call<List<Story>> call = jsonPlaceHolderApi.getStories(parameters);
-        call.enqueue(new Callback<List<Story>>() {
-            @Override
-            public void onResponse(Call<List<Story>> call, Response<List<Story>> response) {
-                if (!response.isSuccessful()) {
-                    System.out.print("Code : " + response.code());
-                    return;
-                }
-                stories.addAll(response.body());
-            }
+    SearchView mSearchView;
 
-            @Override
-            public void onFailure(Call<List<Story>> call, Throwable t) {
-                System.out.print(t.getMessage());
-            }
-        });
-
-        return stories;
-
+    public SearchViewModel(SearchView mSearchView) {
+        this.mSearchView = mSearchView;
     }
 
-    //Get All Tags For Story Searching Filters
-    public static List<Tag> getTags(){
-        final List<Tag> tags = new ArrayList<>();
+    @Override
+    public void getTags() {
         Call<List<Tag>> call = jsonPlaceHolderApi.getTags();
         call.enqueue(new Callback<List<Tag>>() {
             @Override
@@ -55,7 +35,7 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                tags.addAll(response.body());
+                mSearchView.displayTags(response.body());
             }
 
             @Override
@@ -63,13 +43,10 @@ public abstract class StorySearchingController {
                 System.out.print(t.getMessage());
             }
         });
-
-        return tags;
     }
 
-    //Get All Kinds For Story Searching Filters
-    public static List<Kind> getKinds(){
-        final List<Kind> kinds = new ArrayList<>();
+    @Override
+    public void getKinds() {
         Call<List<Kind>> call = jsonPlaceHolderApi.getKinds();
         call.enqueue(new Callback<List<Kind>>() {
             @Override
@@ -78,7 +55,7 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                kinds.addAll(response.body());
+                mSearchView.displayKinds(response.body());
             }
 
             @Override
@@ -86,13 +63,10 @@ public abstract class StorySearchingController {
                 System.out.print(t.getMessage());
             }
         });
-
-        return kinds;
     }
 
-    //Get All Ratings For Story Searching Filters
-    public static List<Rating> getRatings(){
-        final List<Rating> ratings = new ArrayList<>();
+    @Override
+    public void getRatings() {
         Call<List<Rating>> call = jsonPlaceHolderApi.getRatings();
         call.enqueue(new Callback<List<Rating>>() {
             @Override
@@ -101,7 +75,7 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                ratings.addAll(response.body());
+                mSearchView.displayRatings(response.body());
             }
 
             @Override
@@ -109,13 +83,10 @@ public abstract class StorySearchingController {
                 System.out.print(t.getMessage());
             }
         });
-
-        return ratings;
     }
 
-    //Get All Universes For Story Searching Filters
-    public static List<Universe> getUniverses(){
-        final List<Universe> universes = new ArrayList<>();
+    @Override
+    public void getUniverses() {
         Call<List<Universe>> call = jsonPlaceHolderApi.getUniverses();
         call.enqueue(new Callback<List<Universe>>() {
             @Override
@@ -124,7 +95,7 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                universes.addAll(response.body());
+                mSearchView.displayUniverses(response.body());
             }
 
             @Override
@@ -132,13 +103,10 @@ public abstract class StorySearchingController {
                 System.out.print(t.getMessage());
             }
         });
-
-        return universes;
     }
 
-    //Get All Languages For Story Searching Filters
-    public static List<Language> getLanguages(){
-        final List<Language> languages = new ArrayList<>();
+    @Override
+    public void getLanguages() {
         Call<List<Language>> call = jsonPlaceHolderApi.getLanguages();
         call.enqueue(new Callback<List<Language>>() {
             @Override
@@ -147,7 +115,7 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                languages.addAll(response.body());
+                mSearchView.displayLanguages(response.body());
             }
 
             @Override
@@ -155,13 +123,10 @@ public abstract class StorySearchingController {
                 System.out.print(t.getMessage());
             }
         });
-
-        return languages;
     }
 
-    //Get All Status For Story Searching Filters
-    public static List<Status> getStatus(){
-        final List<Status> status = new ArrayList<>();
+    @Override
+    public void getStatus() {
         Call<List<Status>> call = jsonPlaceHolderApi.getStatus();
         call.enqueue(new Callback<List<Status>>() {
             @Override
@@ -170,7 +135,7 @@ public abstract class StorySearchingController {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                status.addAll(response.body());
+                mSearchView.displayStatus(response.body());
             }
 
             @Override
@@ -178,8 +143,5 @@ public abstract class StorySearchingController {
                 System.out.print(t.getMessage());
             }
         });
-
-        return status;
     }
-
 }

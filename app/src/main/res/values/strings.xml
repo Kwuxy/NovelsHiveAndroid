@@ -31,4 +31,7 @@
     <string name="arrays__normal">Normal</string>
     <string name="arrays__large">Large</string>
     <string name="arrays__extra_large">Extra large</string>
+
+    <!-- Search -->
+    <string name="search_hint">Search something...</string>
 </resources>

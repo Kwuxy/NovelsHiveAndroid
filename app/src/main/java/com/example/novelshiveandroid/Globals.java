@@ -6,6 +6,8 @@ import com.example.novelshiveandroid.models.Token;
 
 public class Globals extends Application {
 
+    public static final String KEY_STORY_ID = "story_id";
+
     private static Globals instance;
 
     private Token currentToken;

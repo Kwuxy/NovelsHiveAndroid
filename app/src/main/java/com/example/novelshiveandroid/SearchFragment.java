@@ -15,11 +15,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.novelshiveandroid.models.Kind;
+import com.example.novelshiveandroid.models.Language;
+import com.example.novelshiveandroid.models.Rating;
+import com.example.novelshiveandroid.models.Status;
+import com.example.novelshiveandroid.models.Tag;
+import com.example.novelshiveandroid.models.Universe;
+import com.example.novelshiveandroid.presenters.SearchPresenter;
+import com.example.novelshiveandroid.viewModels.SearchViewModel;
+
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements com.example.novelshiveandroid.views.SearchView {
+
+    SearchPresenter mSearchPresenter;
 
 
     public SearchFragment() {
@@ -30,6 +43,9 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        mSearchPresenter = new SearchViewModel(SearchFragment.this);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
@@ -62,4 +78,33 @@ public class SearchFragment extends Fragment {
         });
     }
 
+    @Override
+    public void displayTags(List<Tag> tags) {
+
+    }
+
+    @Override
+    public void displayKinds(List<Kind> kinds) {
+
+    }
+
+    @Override
+    public void displayRatings(List<Rating> ratings) {
+
+    }
+
+    @Override
+    public void displayUniverses(List<Universe> universes) {
+
+    }
+
+    @Override
+    public void displayLanguages(List<Language> languages) {
+
+    }
+
+    @Override
+    public void displayStatus(List<Status> status) {
+
+    }
 }

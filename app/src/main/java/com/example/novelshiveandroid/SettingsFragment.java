@@ -8,7 +8,13 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
 
-public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
+import com.example.novelshiveandroid.presenters.SettingsPresenter;
+import com.example.novelshiveandroid.viewModels.SettingsViewModel;
+import com.example.novelshiveandroid.views.SettingsView;
+
+public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener, SettingsView {
+
+    SettingsPresenter mSettingsPresenter;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -62,6 +68,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         super.onCreate(savedInstanceState);
         getPreferenceScreen().getSharedPreferences()
                 .registerOnSharedPreferenceChangeListener(this);
+
+        mSettingsPresenter = new SettingsViewModel(SettingsFragment.this);
     }
 
     @Override
@@ -69,5 +77,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         super.onDestroy();
         getPreferenceScreen().getSharedPreferences()
                 .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void displayCurrentSettings(Integer font_size, String font_family, String theme) {
+
+    }
+
+    @Override
+    public void changeSettingsSuccess() {
+
     }
 }

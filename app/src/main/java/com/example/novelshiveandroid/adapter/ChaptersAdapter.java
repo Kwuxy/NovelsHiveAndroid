@@ -9,15 +9,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.novelshiveandroid.R;
+import com.example.novelshiveandroid.StoryDetailsActivity;
 import com.example.novelshiveandroid.models.Chapter;
 
 import java.util.List;
 
 public class ChaptersAdapter extends RecyclerView.Adapter<ChaptersAdapter.MyViewHolder> {
 
+    private StoryDetailsActivity storyDetailsActivity;
     private List<Chapter> chapterList;
 
-    public ChaptersAdapter(List<Chapter> chapters) {
+    public ChaptersAdapter(StoryDetailsActivity storyDetailsActivity, List<Chapter> chapters) {
+        this.storyDetailsActivity = storyDetailsActivity;
         chapterList = chapters;
     }
 
@@ -28,12 +31,11 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChaptersAdapter.MyView
         LayoutInflater inflater = LayoutInflater.from(context);
         View chaptersView = inflater.inflate(R.layout.item_chapter, viewGroup, false);
 
-        MyViewHolder myViewHolder = new MyViewHolder(chaptersView);
-        return myViewHolder;
+        return new MyViewHolder(chaptersView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
         Chapter chapter = chapterList.get(i);
         TextView tvTitle = myViewHolder.tvTitle;
         tvTitle.setText(chapter.getTitle());
@@ -43,6 +45,13 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChaptersAdapter.MyView
 
         TextView tvNumber = myViewHolder.tvNumber;
         tvNumber.setText(chapter.getNumber());
+
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                storyDetailsActivity.onChapterItemClick(i);
+            }
+        });
     }
 
     @Override

@@ -23,6 +23,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -36,15 +37,15 @@ public interface JsonPlaceHolderApi {
 
     //Get User Infos To Display Profile
     @GET("users/{id}")
-    Call<User> getUserInfos(@Path("id") int userId);
+    Call<User> getUserInfos(@Header("Authorization") String token, @Path("id") int userId);
 
     //Get User Favorite Stories List
     @GET("users/{id}/favorites")
-    Call<List<Story>> getUserFavorites(@Path("id") int userId);
+    Call<List<Story>> getUserFavorites(@Header("Authorization") String token, @Path("id") int userId);
 
     //Get User Stories List
     @GET("users/{id}/stories")
-    Call<List<Story>> getUserStories(@Path("id") int userId);
+    Call<List<Story>> getUserStories(@Header("Authorization") String token, @Path("id") int userId);
 
     //Get All Stories With And Without Search Sorting
     @GET("stories")
@@ -121,13 +122,13 @@ public interface JsonPlaceHolderApi {
 
     //Create A Published Comment About A Chapter (Drafted Commentaries not need in Android App)
     @POST("published_commentaries")
-    Call<Comment> createComment(@Body Comment comment);
+    Call<Comment> createComment(@Header("Authorization") String token, @Body Comment comment);
 
     //Add Story as Favorite
     @POST("favorites")
-    Call<Favorite> addToFavorites(@Body Favorite favorite);
+    Call<Favorite> addToFavorites(@Header("Authorization") String token, @Body Favorite favorite);
 
     //Change User Reading Environment (or Update User Infos If Needed Later)
     @PATCH("users/{id}")
-    Call<User> updateUser(@Path("id") int id, @Body User user);
+    Call<User> updateUser(@Header("Authorization") String token, @Path("id") int id, @Body User user);
 }

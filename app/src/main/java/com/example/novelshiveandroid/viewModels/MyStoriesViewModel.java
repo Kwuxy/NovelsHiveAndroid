@@ -1,5 +1,6 @@
 package com.example.novelshiveandroid.viewModels;
 
+import com.example.novelshiveandroid.Globals;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.presenters.MyStoriesPresenter;
 import com.example.novelshiveandroid.views.MyStoriesView;
@@ -22,7 +23,8 @@ public class MyStoriesViewModel implements MyStoriesPresenter {
 
     @Override
     public void getUserStories(int userId) {
-        Call<List<Story>> call = jsonPlaceHolderApi.getUserStories(userId);
+        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        Call<List<Story>> call = jsonPlaceHolderApi.getUserStories(tokenValue, userId);
         call.enqueue(new Callback<List<Story>>() {
             @Override
             public void onResponse(Call<List<Story>> call, Response<List<Story>> response) {

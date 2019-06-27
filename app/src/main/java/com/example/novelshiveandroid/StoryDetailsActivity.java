@@ -161,9 +161,11 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
     @Override
     public void displayStoryChapters(List<Chapter> chapters) {
-        chapters.clear();
-        chapters.addAll(chapters);
-        chaptersAdapter.notifyDataSetChanged();
+        if (!chapters.isEmpty()) {
+            this.chapters.clear();
+            this.chapters.addAll(chapters);
+            chaptersAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

@@ -44,7 +44,7 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChaptersAdapter.MyView
         tvUpdateDate.setText(chapter.getUpdate_date().toString());
 
         TextView tvNumber = myViewHolder.tvNumber;
-        tvNumber.setText(chapter.getNumber());
+        tvNumber.setText(String.format("" + chapter.getNumber()));
 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <ListView
-        android:id="@+id/lv_stories"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_all_stories"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

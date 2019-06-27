@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Card for Movie overview -->
+        <!-- Card for Story overview -->
         <android.support.v7.widget.CardView
             android:id="@+id/cv_story_details"
             android:layout_width="match_parent"
@@ -90,7 +90,7 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
-        <!--Billed cast cardview -->
+        <!--Billed chapter cardview -->
         <android.support.v7.widget.CardView
             android:id="@+id/cv_production_details"
             android:layout_width="match_parent"
@@ -105,7 +105,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/tv_cast_title"
+                    android:id="@+id/tv_chapter_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -121,7 +121,7 @@
 
         </android.support.v7.widget.CardView>
 
-        <!--Movie details cardview -->
+        <!-- Story details cardview -->
         <android.support.v7.widget.CardView
             android:id="@+id/cv_images"
             android:layout_width="match_parent"

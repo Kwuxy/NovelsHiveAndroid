@@ -1,5 +1,6 @@
 package com.example.novelshiveandroid.viewModels;
 
+import com.example.novelshiveandroid.Globals;
 import com.example.novelshiveandroid.models.Comment;
 import com.example.novelshiveandroid.presenters.CommentWriterPresenter;
 import com.example.novelshiveandroid.views.CommentWriterView;
@@ -21,7 +22,8 @@ public class CommentWriterViewModel implements CommentWriterPresenter {
     @Override
     public void writeComment(String commentContent, int userWriterId, int storyChapterId) {
         Comment comment = new Comment(commentContent, userWriterId, storyChapterId);
-        Call<Comment> call = jsonPlaceHolderApi.createComment(comment);
+        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        Call<Comment> call = jsonPlaceHolderApi.createComment(tokenValue, comment);
         call.enqueue(new Callback<Comment>() {
             @Override
             public void onResponse(Call<Comment> call, Response<Comment> response) {

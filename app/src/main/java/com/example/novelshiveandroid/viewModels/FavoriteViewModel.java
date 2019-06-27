@@ -1,5 +1,6 @@
 package com.example.novelshiveandroid.viewModels;
 
+import com.example.novelshiveandroid.Globals;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.presenters.FavoritePresenter;
 import com.example.novelshiveandroid.views.FavoriteView;
@@ -22,7 +23,8 @@ public class FavoriteViewModel implements FavoritePresenter {
 
     @Override
     public void getUserFavorites(int userId) {
-        Call<List<Story>> call = jsonPlaceHolderApi.getUserFavorites(userId);
+        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        Call<List<Story>> call = jsonPlaceHolderApi.getUserFavorites(tokenValue, userId);
         call.enqueue(new Callback<List<Story>>() {
             @Override
             public void onResponse(Call<List<Story>> call, Response<List<Story>> response) {

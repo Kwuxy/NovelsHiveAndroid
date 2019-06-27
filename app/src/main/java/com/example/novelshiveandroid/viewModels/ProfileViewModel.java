@@ -1,5 +1,6 @@
 package com.example.novelshiveandroid.viewModels;
 
+import com.example.novelshiveandroid.Globals;
 import com.example.novelshiveandroid.models.User;
 import com.example.novelshiveandroid.presenters.ProfilePresenter;
 import com.example.novelshiveandroid.views.ProfileView;
@@ -20,7 +21,8 @@ public class ProfileViewModel implements ProfilePresenter {
 
     @Override
     public void getUserInfos(int userId) {
-        Call<User> call = jsonPlaceHolderApi.getUserInfos(userId);
+        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        Call<User> call = jsonPlaceHolderApi.getUserInfos(tokenValue, userId);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

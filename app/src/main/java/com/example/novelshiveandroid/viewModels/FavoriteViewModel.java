@@ -1,10 +1,16 @@
 package com.example.novelshiveandroid.viewModels;
 
+import android.util.Log;
+
 import com.example.novelshiveandroid.Globals;
+import com.example.novelshiveandroid.models.Favorite;
+import com.example.novelshiveandroid.models.FavoriteList;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.presenters.FavoritePresenter;
 import com.example.novelshiveandroid.views.FavoriteView;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,19 +30,20 @@ public class FavoriteViewModel implements FavoritePresenter {
     @Override
     public void getUserFavorites(int userId) {
         String tokenValue = Globals.getInstance().getCurrentToken().getId();
-        Call<List<Story>> call = jsonPlaceHolderApi.getUserFavorites(tokenValue, userId);
-        call.enqueue(new Callback<List<Story>>() {
+        Call<FavoriteList> call = jsonPlaceHolderApi.getUserFavorites(tokenValue, userId);
+        call.enqueue(new Callback<FavoriteList>() {
             @Override
-            public void onResponse(Call<List<Story>> call, Response<List<Story>> response) {
+            public void onResponse(Call<FavoriteList> call, Response<FavoriteList> response) {
                 if (!response.isSuccessful()) {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                mFavoriteView.displayUserFavorites(response.body());
+                Log.i("TEST_FAV_STORY", "Size : " + response.body().getFavoriteStories().size());
+                mFavoriteView.displayUserFavorites(response.body().getFavoriteStories());
             }
 
             @Override
-            public void onFailure(Call<List<Story>> call, Throwable t) {
+            public void onFailure(Call<FavoriteList> call, Throwable t) {
                 System.out.print(t.getMessage());
             }
         });

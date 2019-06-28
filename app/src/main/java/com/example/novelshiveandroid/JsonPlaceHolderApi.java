@@ -3,6 +3,7 @@ package com.example.novelshiveandroid;
 import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.models.Comment;
 import com.example.novelshiveandroid.models.Favorite;
+import com.example.novelshiveandroid.models.FavoriteList;
 import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.Language;
 import com.example.novelshiveandroid.models.Rating;
@@ -40,8 +41,8 @@ public interface JsonPlaceHolderApi {
     Call<User> getUserInfos(@Header("Authorization") String token, @Path("id") int userId);
 
     //Get User Favorite Stories List
-    @GET("users/{id}/favorites")
-    Call<List<Story>> getUserFavorites(@Header("Authorization") String token, @Path("id") int userId);
+    @GET("users/{id}/favoriteStories")
+    Call<FavoriteList> getUserFavorites(@Header("Authorization") String token, @Path("id") int userId);
 
     //Get User Stories List
     @GET("users/{id}/stories")

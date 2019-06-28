@@ -13,32 +13,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.LightTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StoryDetailsActivity"></activity>
-        <activity android:name=".ReaderActivity" />
-        <activity android:name=".ProfilActivity" />
+        <activity android:name=".activities.StoryDetailsActivity"></activity>
+        <activity android:name=".activities.ReaderActivity" />
+        <activity android:name=".activities.ProfilActivity" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.HomeActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/action_settings"
-            android:parentActivityName=".HomeActivity">
+            android:parentActivityName=".activities.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeActivity" />
+                android:value=".activities.HomeActivity" />
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".activities.MainActivity" />
     </application>
 
 </manifest>

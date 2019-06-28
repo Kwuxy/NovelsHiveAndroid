@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.novelshiveandroid.R;
-import com.example.novelshiveandroid.StoryDetailsActivity;
+import com.example.novelshiveandroid.activities.StoryDetailsActivity;
 import com.example.novelshiveandroid.models.Chapter;
 
 import java.util.List;

@@ -1,7 +1,9 @@
-package com.example.novelshiveandroid;
+package com.example.novelshiveandroid.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.novelshiveandroid.R;
 
 public class MainActivity extends AppCompatActivity {
 

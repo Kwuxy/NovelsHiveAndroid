@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.novelshiveandroid.FavoriteFragment;
+import com.example.novelshiveandroid.fragments.FavoriteFragment;
 import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.models.Story;
 

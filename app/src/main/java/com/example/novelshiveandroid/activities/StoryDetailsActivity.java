@@ -1,4 +1,4 @@
-package com.example.novelshiveandroid;
+package com.example.novelshiveandroid.activities;
 
 import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.adapter.ChaptersAdapter;
 import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.models.Comment;

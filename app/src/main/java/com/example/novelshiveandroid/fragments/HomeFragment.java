@@ -1,4 +1,4 @@
-package com.example.novelshiveandroid;
+package com.example.novelshiveandroid.fragments;
 
 
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.novelshiveandroid.R;
+import com.example.novelshiveandroid.activities.StoryDetailsActivity;
 import com.example.novelshiveandroid.adapter.HomeStoryAdapter;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.presenters.HomePresenter;
@@ -19,7 +21,6 @@ import com.example.novelshiveandroid.views.HomeView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import static com.example.novelshiveandroid.Globals.KEY_STORY_ID;
 

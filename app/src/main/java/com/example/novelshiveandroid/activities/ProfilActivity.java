@@ -1,10 +1,11 @@
-package com.example.novelshiveandroid;
+package com.example.novelshiveandroid.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.models.User;
 import com.example.novelshiveandroid.presenters.ProfilePresenter;
 import com.example.novelshiveandroid.viewModels.ProfileViewModel;

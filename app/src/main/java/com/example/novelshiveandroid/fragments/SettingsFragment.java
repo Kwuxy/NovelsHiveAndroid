@@ -1,4 +1,4 @@
-package com.example.novelshiveandroid;
+package com.example.novelshiveandroid.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
 
+import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.presenters.SettingsPresenter;
 import com.example.novelshiveandroid.viewModels.SettingsViewModel;
 import com.example.novelshiveandroid.views.SettingsView;

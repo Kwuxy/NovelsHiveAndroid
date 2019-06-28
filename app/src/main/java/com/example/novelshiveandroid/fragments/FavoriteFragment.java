@@ -1,25 +1,25 @@
-package com.example.novelshiveandroid;
+package com.example.novelshiveandroid.fragments;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.novelshiveandroid.Globals;
+import com.example.novelshiveandroid.R;
+import com.example.novelshiveandroid.activities.StoryDetailsActivity;
 import com.example.novelshiveandroid.adapter.FavoriteStoriesAdapter;
-import com.example.novelshiveandroid.adapter.HomeStoryAdapter;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.presenters.FavoritePresenter;
 import com.example.novelshiveandroid.viewModels.FavoriteViewModel;
 import com.example.novelshiveandroid.views.FavoriteView;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static com.example.novelshiveandroid.Globals.KEY_STORY_ID;

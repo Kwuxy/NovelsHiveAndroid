@@ -1,4 +1,4 @@
-package com.example.novelshiveandroid;
+package com.example.novelshiveandroid.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.presenters.LoginPresenter;
 import com.example.novelshiveandroid.viewModels.LoginViewModel;
 import com.example.novelshiveandroid.views.LoginView;

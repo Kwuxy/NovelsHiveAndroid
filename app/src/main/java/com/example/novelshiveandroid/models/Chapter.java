@@ -1,6 +1,7 @@
 package com.example.novelshiveandroid.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.Date;
 
@@ -9,8 +10,8 @@ public class Chapter {
     private int id;
     private String title;
 
-    @SerializedName("body")
-    private String text;
+    @SerializedName("text")
+    private LinkedTreeMap text;
 
     private Date update_date;
     private Boolean online;
@@ -25,7 +26,7 @@ public class Chapter {
         return title;
     }
 
-    public String getText() {
+    public LinkedTreeMap getText() {
         return text;
     }
 

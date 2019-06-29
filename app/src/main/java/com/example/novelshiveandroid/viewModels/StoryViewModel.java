@@ -52,6 +52,14 @@ public class StoryViewModel implements StoryPresenter {
     }
 
     @Override
+    public String convertSynopsis(ArrayList<Double> doubleData) {
+        byte[] data = new byte[doubleData.size()];
+        for(int i = 0; i < doubleData.size(); i++)
+            data[i] = doubleData.get(i).byteValue();
+        return new String(data);
+    }
+
+    @Override
     public void getStoryKind(int storyId) {
         Call<Kind> call = jsonPlaceHolderApi.getStoryKind(storyId);
         call.enqueue(new Callback<Kind>() {

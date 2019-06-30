@@ -4,6 +4,8 @@ import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.presenters.ReaderPresenter;
 import com.example.novelshiveandroid.views.ReaderView;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,5 +38,13 @@ public class ReaderViewModel implements ReaderPresenter {
                 System.out.print(t.getMessage());
             }
         });
+    }
+
+    @Override
+    public String convertText(ArrayList<Double> doubleData) {
+        byte[] data = new byte[doubleData.size()];
+        for(int i = 0; i < doubleData.size(); i++)
+            data[i] = doubleData.get(i).byteValue();
+        return new String(data);
     }
 }

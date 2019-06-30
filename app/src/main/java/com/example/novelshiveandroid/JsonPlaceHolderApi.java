@@ -9,7 +9,6 @@ import com.example.novelshiveandroid.models.Language;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Status;
 import com.example.novelshiveandroid.models.Story;
-import com.example.novelshiveandroid.models.StoryHasStoryTag;
 import com.example.novelshiveandroid.models.Tag;
 import com.example.novelshiveandroid.models.TagList;
 import com.example.novelshiveandroid.models.Token;
@@ -20,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;

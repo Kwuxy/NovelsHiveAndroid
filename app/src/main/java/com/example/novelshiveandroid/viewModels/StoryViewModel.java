@@ -49,7 +49,7 @@ public class StoryViewModel implements StoryPresenter {
     }
 
     @Override
-    public String convertSynopsis(ArrayList<Double> doubleData) {
+    public String convertData(ArrayList<Double> doubleData) {
         byte[] data = new byte[doubleData.size()];
         for(int i = 0; i < doubleData.size(); i++)
             data[i] = doubleData.get(i).byteValue();

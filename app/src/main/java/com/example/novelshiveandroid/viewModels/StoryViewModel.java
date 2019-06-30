@@ -7,8 +7,7 @@ import com.example.novelshiveandroid.models.Favorite;
 import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Story;
-import com.example.novelshiveandroid.models.StoryHasStoryTag;
-import com.example.novelshiveandroid.models.Tag;
+import com.example.novelshiveandroid.models.TagList;
 import com.example.novelshiveandroid.presenters.StoryPresenter;
 import com.example.novelshiveandroid.views.StoryView;
 
@@ -24,11 +23,9 @@ import static com.example.novelshiveandroid.APIClient.jsonPlaceHolderApi;
 public class StoryViewModel implements StoryPresenter {
 
     StoryView mStoryView;
-    List<Tag> storyTags;
 
     public StoryViewModel(StoryView mStoryView) {
         this.mStoryView = mStoryView;
-        storyTags = new ArrayList<>();
     }
 
     @Override
@@ -52,7 +49,7 @@ public class StoryViewModel implements StoryPresenter {
     }
 
     @Override
-    public String convertSynopsis(ArrayList<Double> doubleData) {
+    public String convertData(ArrayList<Double> doubleData) {
         byte[] data = new byte[doubleData.size()];
         for(int i = 0; i < doubleData.size(); i++)
             data[i] = doubleData.get(i).byteValue();
@@ -101,39 +98,19 @@ public class StoryViewModel implements StoryPresenter {
 
     @Override
     public void getStoryTags(int storyId) {
-        Call<List<StoryHasStoryTag>> call = jsonPlaceHolderApi.getStoryHasStoryTags(storyId);
-        call.enqueue(new Callback<List<StoryHasStoryTag>>() {
+        Call<TagList> call = jsonPlaceHolderApi.getStoryTags(storyId);
+        call.enqueue(new Callback<TagList>() {
             @Override
-            public void onResponse(Call<List<StoryHasStoryTag>> call, Response<List<StoryHasStoryTag>> response) {
+            public void onResponse(Call<TagList> call, Response<TagList> response) {
                 if (!response.isSuccessful()) {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                Call<Tag> call2;
-                for(StoryHasStoryTag link : response.body()){
-                    call2 = jsonPlaceHolderApi.getStoryTag(link.getId());
-                    call2.enqueue(new Callback<Tag>() {
-                        @Override
-                        public void onResponse(Call<Tag> call2, Response<Tag> response) {
-                            if (!response.isSuccessful()) {
-                                System.out.print("Code : " + response.code());
-                                return;
-                            }
-                            storyTags.add(response.body());
-                        }
-
-                        @Override
-                        public void onFailure(Call<Tag> call2, Throwable t) {
-                            System.out.print(t.getMessage());
-                        }
-                    });
-                }
-
-                mStoryView.displayStoryTags(storyTags);
+                mStoryView.displayStoryTags(response.body().getStoryTags());
             }
 
             @Override
-            public void onFailure(Call<List<StoryHasStoryTag>> call, Throwable t) {
+            public void onFailure(Call<TagList> call, Throwable t) {
                 System.out.print(t.getMessage());
             }
         });

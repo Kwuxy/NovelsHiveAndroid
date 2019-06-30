@@ -1,10 +1,14 @@
 package com.example.novelshiveandroid.models;
 
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.internal.LinkedTreeMap;
+
 public class Rating {
 
     private int id;
     private String symbol;
-    private String description;
+    @SerializedName("description")
+    private LinkedTreeMap description;
 
     public int getId() {
         return id;
@@ -14,7 +18,7 @@ public class Rating {
         return symbol;
     }
 
-    public String getDescription() {
+    public LinkedTreeMap getDescription() {
         return description;
     }
 }

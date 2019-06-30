@@ -141,7 +141,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
             tvStoryTitle.setText(story.getTitle());
             tvStoryUpdateDate.setText(story.getUpdate_date().toString());
             tvStoryPublicationDate.setText(story.getPublication_date().toString());
-            String synopsis = mStoryPresenter.convertSynopsis((ArrayList<Double>)story.getSynopsis().get("data"));
+            String synopsis = mStoryPresenter.convertData((ArrayList<Double>)story.getSynopsis().get("data"));
             tvStorySynopsis.setText(synopsis);
         }
     }

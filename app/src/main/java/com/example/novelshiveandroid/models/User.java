@@ -1,13 +1,14 @@
 package com.example.novelshiveandroid.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.internal.LinkedTreeMap;
 
 public class User {
 
     private Integer id;
 
-    @SerializedName("body")
-    private String description;
+    @SerializedName("description")
+    private LinkedTreeMap description;
 
     private String password;
     private String email;
@@ -21,7 +22,7 @@ public class User {
     private String verificationToken;
 
     //Constructor With All User Infos
-    public User(String description, String password, String email, Integer font_size,
+    public User(LinkedTreeMap description, String password, String email, Integer font_size,
                 String font_family, String theme, String realm, String username) {
         this.description = description;
         this.password = password;
@@ -55,7 +56,7 @@ public class User {
         return id;
     }
 
-    public String getDescription() {
+    public LinkedTreeMap getDescription() {
         return description;
     }
 

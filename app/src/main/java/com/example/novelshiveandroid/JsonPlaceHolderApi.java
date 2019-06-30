@@ -9,8 +9,8 @@ import com.example.novelshiveandroid.models.Language;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Status;
 import com.example.novelshiveandroid.models.Story;
-import com.example.novelshiveandroid.models.StoryHasStoryTag;
 import com.example.novelshiveandroid.models.Tag;
+import com.example.novelshiveandroid.models.TagList;
 import com.example.novelshiveandroid.models.Token;
 import com.example.novelshiveandroid.models.Universe;
 import com.example.novelshiveandroid.models.User;
@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -64,13 +63,9 @@ public interface JsonPlaceHolderApi {
     @GET("stories/{id}/storyRating")
     Call<Rating> getStoryRating(@Path("id") int storyId);
 
-    //Get Story Tags Links
-    @GET("stories/{id}/storyHasStoryTags")
-    Call<List<StoryHasStoryTag>> getStoryHasStoryTags(@Path("id") int storyId);
-
-    //Get Tags Linked To A Story
-    @GET("Story_has_story_tags/{id}/storyTag")
-    Call<Tag> getStoryTag(@Path("id") int storyHasStoryTagId);
+    //Get Story Tags
+    @GET("stories/{id}/storyTags")
+    Call<TagList> getStoryTags(@Path("id") int storyId);
 
     //Get Story Chapters List
     @GET("stories/{id}/storyChapters")

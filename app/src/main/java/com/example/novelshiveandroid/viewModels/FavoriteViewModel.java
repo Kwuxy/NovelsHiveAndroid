@@ -1,10 +1,9 @@
 package com.example.novelshiveandroid.viewModels;
 
-import com.example.novelshiveandroid.models.Story;
+import com.example.novelshiveandroid.Globals;
+import com.example.novelshiveandroid.models.FavoriteList;
 import com.example.novelshiveandroid.presenters.FavoritePresenter;
 import com.example.novelshiveandroid.views.FavoriteView;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,19 +21,20 @@ public class FavoriteViewModel implements FavoritePresenter {
 
     @Override
     public void getUserFavorites(int userId) {
-        Call<List<Story>> call = jsonPlaceHolderApi.getUserFavorites(userId);
-        call.enqueue(new Callback<List<Story>>() {
+        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        Call<FavoriteList> call = jsonPlaceHolderApi.getUserFavorites(tokenValue, userId);
+        call.enqueue(new Callback<FavoriteList>() {
             @Override
-            public void onResponse(Call<List<Story>> call, Response<List<Story>> response) {
+            public void onResponse(Call<FavoriteList> call, Response<FavoriteList> response) {
                 if (!response.isSuccessful()) {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                mFavoriteView.displayUserFavorites(response.body());
+                mFavoriteView.displayUserFavorites(response.body().getFavoriteStories());
             }
 
             @Override
-            public void onFailure(Call<List<Story>> call, Throwable t) {
+            public void onFailure(Call<FavoriteList> call, Throwable t) {
                 System.out.print(t.getMessage());
             }
         });

@@ -1,18 +1,21 @@
-package com.example.novelshiveandroid;
+package com.example.novelshiveandroid.activities;
 
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-public class ProfilActivity extends AppCompatActivity {
+import com.example.novelshiveandroid.R;
+
+public class SettingsActivity extends AppCompatActivity {
 
     private Toolbar myToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profil);
+        setContentView(R.layout.activity_settings);
 
         this.configureToolbar();
     }
@@ -20,12 +23,16 @@ public class ProfilActivity extends AppCompatActivity {
     private void configureToolbar() {
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle("Profile");
+        getSupportActionBar().setTitle("Settings");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
-        return true;
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -11,20 +11,33 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ReaderActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".ProfilActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".LoginActivity">
+        android:theme="@style/AppTheme.LightTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activities.StoryDetailsActivity" />
+        <activity android:name=".activities.ReaderActivity" />
+        <activity android:name=".activities.ProfilActivity" />
+        <activity
+            android:name=".activities.HomeActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/action_settings"
+            android:parentActivityName=".activities.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.HomeActivity" />
+        </activity>
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

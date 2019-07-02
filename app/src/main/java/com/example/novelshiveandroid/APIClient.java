@@ -1,7 +1,5 @@
 package com.example.novelshiveandroid;
 
-import com.example.novelshiveandroid.JsonPlaceHolderApi;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

@@ -1,5 +1,6 @@
 package com.example.novelshiveandroid.viewModels;
 
+import com.example.novelshiveandroid.Globals;
 import com.example.novelshiveandroid.models.User;
 import com.example.novelshiveandroid.presenters.SettingsPresenter;
 import com.example.novelshiveandroid.views.SettingsView;
@@ -21,7 +22,8 @@ public class SettingsViewModel implements SettingsPresenter {
 
     @Override
     public void getUserSettings(int userId) {
-        Call<User> call = jsonPlaceHolderApi.getUserInfos(userId);
+        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        Call<User> call = jsonPlaceHolderApi.getUserInfos(tokenValue, userId);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -43,7 +45,8 @@ public class SettingsViewModel implements SettingsPresenter {
 
     @Override
     public void changeSettings(User user, Integer font_size, String font_family, String realm) {
-        Call<User> call = jsonPlaceHolderApi.updateUser(user.getId(), user);
+        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        Call<User> call = jsonPlaceHolderApi.updateUser(tokenValue, user.getId(), user);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

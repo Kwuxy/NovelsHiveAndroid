@@ -1,6 +1,6 @@
 package com.example.novelshiveandroid.viewModels;
 
-import com.example.novelshiveandroid.models.Chapter;
+import com.example.novelshiveandroid.models.ReadingChapter;
 import com.example.novelshiveandroid.presenters.ReaderPresenter;
 import com.example.novelshiveandroid.views.ReaderView;
 
@@ -21,20 +21,20 @@ public class ReaderViewModel implements ReaderPresenter {
     }
 
     @Override
-    public void getChapterInfos(int chapterId) {
-        Call<Chapter> call = jsonPlaceHolderApi.getChapterInfos(chapterId);
-        call.enqueue(new Callback<Chapter>() {
+    public void getReadingChapterInfos(int chapterId) {
+        Call<ReadingChapter> call = jsonPlaceHolderApi.getReadingChapterInfos(chapterId);
+        call.enqueue(new Callback<ReadingChapter>() {
             @Override
-            public void onResponse(Call<Chapter> call, Response<Chapter> response) {
+            public void onResponse(Call<ReadingChapter> call, Response<ReadingChapter> response) {
                 if (!response.isSuccessful()) {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                mReaderView.displayChapter(response.body());
+                mReaderView.displayReadingChapter(response.body());
             }
 
             @Override
-            public void onFailure(Call<Chapter> call, Throwable t) {
+            public void onFailure(Call<ReadingChapter> call, Throwable t) {
                 System.out.print(t.getMessage());
             }
         });

@@ -18,6 +18,8 @@ import com.example.novelshiveandroid.views.ReaderView;
 import java.util.ArrayList;
 
 import static com.example.novelshiveandroid.Globals.KEY_CHAPTER_ID;
+import static com.example.novelshiveandroid.Globals.KEY_PREVIOUS_CHAPTER_ID;
+import static com.example.novelshiveandroid.Globals.KEY_NEXT_CHAPTER_ID;
 
 public class ReaderActivity extends AppCompatActivity implements ReaderView {
 
@@ -64,6 +66,8 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
             String chapterText = mReaderPresenter.convertText((ArrayList<Double>)readingChapter.getText().get("data"));
             tvChapterText.setText(Html.fromHtml(chapterText));
             getSupportActionBar().setTitle(readingChapter.getTitle());
+            getIntent().putExtra(KEY_PREVIOUS_CHAPTER_ID, readingChapter.getPreviousChapter());
+            getIntent().putExtra(KEY_NEXT_CHAPTER_ID, readingChapter.getNextChapter());
         }
     }
 

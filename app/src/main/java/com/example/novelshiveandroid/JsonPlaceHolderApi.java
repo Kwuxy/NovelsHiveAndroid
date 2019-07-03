@@ -7,6 +7,7 @@ import com.example.novelshiveandroid.models.FavoriteList;
 import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.Language;
 import com.example.novelshiveandroid.models.Rating;
+import com.example.novelshiveandroid.models.ReadingChapter;
 import com.example.novelshiveandroid.models.Status;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.Tag;
@@ -82,6 +83,10 @@ public interface JsonPlaceHolderApi {
     //Get Chapter Infos To Display It
     @GET("chapters/{id}")
     Call<Chapter> getChapterInfos(@Path("id") int chapterId);
+
+    //Get Reading Chapter Infos To Display It
+    @GET("chapters/{id}/read")
+    Call<ReadingChapter> getReadingChapterInfos(@Path("id") int chapterId);
 
     //Get All Tags For Story Searching Filters
     @GET("tags")

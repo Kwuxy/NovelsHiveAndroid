@@ -12,7 +12,11 @@ import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.activities.StoryDetailsActivity;
 import com.example.novelshiveandroid.models.Chapter;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
+
+import static com.example.novelshiveandroid.Globals.DATE_FORMAT;
 
 public class ChaptersAdapter extends RecyclerView.Adapter<ChaptersAdapter.MyViewHolder> {
 
@@ -41,7 +45,7 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChaptersAdapter.MyView
         tvTitle.setText(chapter.getTitle());
 
         TextView tvUpdateDate = myViewHolder.tvUpdateDate;
-        tvUpdateDate.setText(chapter.getUpdate_date().toString());
+        tvUpdateDate.setText("Last update : " + DATE_FORMAT.format(chapter.getUpdate_date()));
 
         TextView tvNumber = myViewHolder.tvNumber;
         tvNumber.setText(String.format("" + chapter.getNumber()));

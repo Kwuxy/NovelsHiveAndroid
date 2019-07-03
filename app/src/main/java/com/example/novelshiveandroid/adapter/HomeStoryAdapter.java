@@ -12,7 +12,11 @@ import com.example.novelshiveandroid.fragments.HomeFragment;
 import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.models.Story;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
+
+import static com.example.novelshiveandroid.Globals.DATE_FORMAT;
 
 public class HomeStoryAdapter extends RecyclerView.Adapter<HomeStoryAdapter.MyViewHolder> {
 
@@ -42,7 +46,7 @@ public class HomeStoryAdapter extends RecyclerView.Adapter<HomeStoryAdapter.MyVi
         tvTitle.setText(story.getTitle());
 
         TextView tvStoryUpdateDate = myViewHolder.tvStoryUpdateDate;
-        tvStoryUpdateDate.setText(story.getUpdate_date().toString());
+        tvStoryUpdateDate.setText("Last update : " + DATE_FORMAT.format(story.getUpdate_date()));
 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

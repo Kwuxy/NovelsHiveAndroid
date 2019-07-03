@@ -12,7 +12,11 @@ import com.example.novelshiveandroid.fragments.FavoriteFragment;
 import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.models.Story;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
+
+import static com.example.novelshiveandroid.Globals.DATE_FORMAT;
 
 public class FavoriteStoriesAdapter extends RecyclerView.Adapter<FavoriteStoriesAdapter.MyViewHolder> {
 
@@ -44,7 +48,7 @@ public class FavoriteStoriesAdapter extends RecyclerView.Adapter<FavoriteStories
         tvTitle.setText(story.getTitle());
 
         TextView tvUpdateDate = myViewHolder.tvUpdateDate;
-        tvUpdateDate.setText(story.getUpdate_date().toString());
+        tvUpdateDate.setText("Last update : " + DATE_FORMAT.format(story.getUpdate_date()));
 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

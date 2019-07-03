@@ -46,4 +46,7 @@
     <string name="chapters">Chapters</string>
 
     <string name="imgDescription">Hold story backdrop image"</string>
+
+    <string name="placeHolderUpdateDate">Last update : %1$s</string>
+    <string name="placeHolderPublicationDate">Publication date : %1$s</string>
 </resources>

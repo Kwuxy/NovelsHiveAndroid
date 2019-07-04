@@ -25,11 +25,7 @@
         </activity>
         <activity
             android:name=".activities.SettingsActivity"
-            android:label="@string/action_settings"
-            android:parentActivityName=".activities.HomeActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.HomeActivity" />
+            android:label="@string/action_settings">
         </activity>
         <activity android:name=".activities.LoginActivity">
             <intent-filter>

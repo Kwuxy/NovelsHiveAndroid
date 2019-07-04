@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -41,6 +42,12 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
         mReaderPresenter.getChapterInfos(chapterId);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar_reader, menu);
+        return true;
+    }
+
     private void configureToolbar() {
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -53,8 +60,16 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
-        return true;
+
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                return true;
+            default:
+                finish();
+                return true;
+        }
     }
 
     @Override

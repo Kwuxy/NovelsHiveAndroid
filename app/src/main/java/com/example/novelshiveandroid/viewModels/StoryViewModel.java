@@ -2,9 +2,9 @@ package com.example.novelshiveandroid.viewModels;
 
 import com.example.novelshiveandroid.Globals;
 import com.example.novelshiveandroid.models.Chapter;
-import com.example.novelshiveandroid.models.Comment;
 import com.example.novelshiveandroid.models.Favorite;
 import com.example.novelshiveandroid.models.Kind;
+import com.example.novelshiveandroid.models.PublishedCommentList;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.TagList;
@@ -151,26 +151,6 @@ public class StoryViewModel implements StoryPresenter {
 
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
-                System.out.print(t.getMessage());
-            }
-        });
-    }
-
-    @Override
-    public void getStoryChapterComments(int chapterId) {
-        Call<List<Comment>> call = jsonPlaceHolderApi.getChapterComments(chapterId);
-        call.enqueue(new Callback<List<Comment>>() {
-            @Override
-            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
-                if (!response.isSuccessful()) {
-                    System.out.print("Code : " + response.code());
-                    return;
-                }
-                mStoryView.displayStoryChaptersComments(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<List<Comment>> call, Throwable t) {
                 System.out.print(t.getMessage());
             }
         });

@@ -7,9 +7,10 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.novelshiveandroid.R;
-import com.example.novelshiveandroid.models.Chapter;
+import com.example.novelshiveandroid.models.ReadingChapter;
 import com.example.novelshiveandroid.presenters.ReaderPresenter;
 import com.example.novelshiveandroid.viewModels.ReaderViewModel;
 import com.example.novelshiveandroid.views.ReaderView;
@@ -17,6 +18,8 @@ import com.example.novelshiveandroid.views.ReaderView;
 import java.util.ArrayList;
 
 import static com.example.novelshiveandroid.Globals.KEY_CHAPTER_ID;
+import static com.example.novelshiveandroid.Globals.KEY_PREVIOUS_CHAPTER_ID;
+import static com.example.novelshiveandroid.Globals.KEY_NEXT_CHAPTER_ID;
 
 public class ReaderActivity extends AppCompatActivity implements ReaderView {
 
@@ -38,7 +41,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
 
         mReaderPresenter = new ReaderViewModel(ReaderActivity.this);
         // Request data
-        mReaderPresenter.getChapterInfos(chapterId);
+        mReaderPresenter.getReadingChapterInfos(chapterId);
     }
 
     private void configureToolbar() {
@@ -58,11 +61,31 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     }
 
     @Override
-    public void displayChapter(Chapter chapter) {
-        if(chapter != null) {
-            String chapterText = mReaderPresenter.convertText((ArrayList<Double>)chapter.getText().get("data"));
+    public void displayReadingChapter(ReadingChapter readingChapter) {
+        if(readingChapter != null){
+            String chapterText = mReaderPresenter.convertText((ArrayList<Double>)readingChapter.getText().get("data"));
             tvChapterText.setText(Html.fromHtml(chapterText));
-            getSupportActionBar().setTitle(chapter.getTitle());
+            getSupportActionBar().setTitle(readingChapter.getTitle());
+            getIntent().putExtra(KEY_PREVIOUS_CHAPTER_ID, readingChapter.getPreviousChapter());
+            getIntent().putExtra(KEY_NEXT_CHAPTER_ID, readingChapter.getNextChapter());
         }
+    }
+
+    @Override
+    public void goToPreviousChapter(Double previousChapterId) {
+        if(previousChapterId == null){
+            Toast.makeText(getApplicationContext(), "This is the first chapter of this story !", Toast.LENGTH_LONG).show();
+            return;
+        }
+        mReaderPresenter.getReadingChapterInfos(previousChapterId.intValue());
+    }
+
+    @Override
+    public void goToNextChapter(Double nextChapterId) {
+        if(nextChapterId == null){
+            Toast.makeText(getApplicationContext(), "This is the last published chapter of this story !", Toast.LENGTH_LONG).show();
+            return;
+        }
+        mReaderPresenter.getReadingChapterInfos(nextChapterId.intValue());
     }
 }

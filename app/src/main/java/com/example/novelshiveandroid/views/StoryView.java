@@ -3,6 +3,7 @@ package com.example.novelshiveandroid.views;
 import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.models.Comment;
 import com.example.novelshiveandroid.models.Kind;
+import com.example.novelshiveandroid.models.PublishedComment;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.Tag;
@@ -16,7 +17,6 @@ public interface StoryView {
     void displayStoryTags(List<Tag> tags);
     void displayStoryChapters(List<Chapter> chapters);
     void displayStoryChaptersCount(Integer count);
-    void displayStoryChaptersComments(List<Comment> comments);
 
     void displayFavoriteAdding();
 }

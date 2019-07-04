@@ -15,8 +15,8 @@ import android.widget.TextView;
 import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.adapter.ChaptersAdapter;
 import com.example.novelshiveandroid.models.Chapter;
-import com.example.novelshiveandroid.models.Comment;
 import com.example.novelshiveandroid.models.Kind;
+import com.example.novelshiveandroid.models.PublishedComment;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.Tag;
@@ -172,11 +172,6 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
     @Override
     public void displayStoryChaptersCount(Integer count) {
-
-    }
-
-    @Override
-    public void displayStoryChaptersComments(List<Comment> comments) {
 
     }
 

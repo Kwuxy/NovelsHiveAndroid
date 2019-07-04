@@ -49,4 +49,6 @@
 
     <string name="placeHolderUpdateDate">Last update : %1$s</string>
     <string name="placeHolderPublicationDate">Publication date : %1$s</string>
+
+    <string name="action_comments">Comments</string>
 </resources>

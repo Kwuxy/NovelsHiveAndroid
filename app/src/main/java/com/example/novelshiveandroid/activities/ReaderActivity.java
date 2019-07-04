@@ -24,6 +24,8 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     private Toolbar myToolbar;
     private TextView tvChapterText;
 
+    private int chapterId;
+
     ReaderPresenter mReaderPresenter;
 
     @Override
@@ -35,7 +37,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
         initUI();
 
         Intent intent = getIntent();
-        int chapterId = intent.getIntExtra(KEY_CHAPTER_ID, 0);
+        chapterId = intent.getIntExtra(KEY_CHAPTER_ID, 0);
 
         mReaderPresenter = new ReaderViewModel(ReaderActivity.this);
         // Request data
@@ -66,6 +68,10 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 startActivity(settingsIntent);
                 return true;
+            case R.id.action_comments:
+                Intent chapterCommentsIntent = new Intent(this, ChapterCommentsActivity.class);
+                chapterCommentsIntent.putExtra(KEY_CHAPTER_ID, chapterId);
+                startActivity(chapterCommentsIntent);
             default:
                 finish();
                 return true;

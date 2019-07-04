@@ -1,9 +1,9 @@
 package com.example.novelshiveandroid.views;
 
-import com.example.novelshiveandroid.models.Comment;
+import com.example.novelshiveandroid.models.PublishedComment;
 
 import java.util.List;
 
 public interface ChapterCommentsView {
-    void displayChapterComments(List<Comment> chapterComments);
+    void displayChapterComments(List<PublishedComment> chapterComments);
 }

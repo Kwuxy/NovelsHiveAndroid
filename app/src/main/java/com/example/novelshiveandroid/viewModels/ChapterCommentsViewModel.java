@@ -1,10 +1,8 @@
 package com.example.novelshiveandroid.viewModels;
 
-import com.example.novelshiveandroid.models.Comment;
+import com.example.novelshiveandroid.models.PublishedCommentList;
 import com.example.novelshiveandroid.presenters.ChapterCommentsPresenter;
 import com.example.novelshiveandroid.views.ChapterCommentsView;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -14,27 +12,27 @@ import static com.example.novelshiveandroid.APIClient.jsonPlaceHolderApi;
 
 public class ChapterCommentsViewModel implements ChapterCommentsPresenter {
 
-    ChapterCommentsView mchapterCommentsView;
+    ChapterCommentsView mChapterCommentsView;
 
     public ChapterCommentsViewModel(ChapterCommentsView mchapterCommentsView) {
-        this.mchapterCommentsView = mchapterCommentsView;
+        this.mChapterCommentsView = mchapterCommentsView;
     }
 
     @Override
     public void getChapterComments(int chapterId) {
-        Call<List<Comment>> chapterComments = jsonPlaceHolderApi.getChapterComments(chapterId);
-        chapterComments.enqueue(new Callback<List<Comment>>() {
+        Call<PublishedCommentList> chapterComments = jsonPlaceHolderApi.getChapterComments(chapterId);
+        chapterComments.enqueue(new Callback<PublishedCommentList>() {
             @Override
-            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
+            public void onResponse(Call<PublishedCommentList> call, Response<PublishedCommentList> response) {
                 if (!response.isSuccessful()) {
                     System.out.print("Code : " + response.code());
                     return;
                 }
-                mchapterCommentsView.displayChapterComments(response.body());
+                mChapterCommentsView.displayChapterComments(response.body().getListPublishedComment());
             }
 
             @Override
-            public void onFailure(Call<List<Comment>> call, Throwable t) {
+            public void onFailure(Call<PublishedCommentList> call, Throwable t) {
                 System.out.print(t.getMessage());
             }
         });

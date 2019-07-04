@@ -6,6 +6,8 @@ import com.example.novelshiveandroid.models.Favorite;
 import com.example.novelshiveandroid.models.FavoriteList;
 import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.Language;
+import com.example.novelshiveandroid.models.PublishedComment;
+import com.example.novelshiveandroid.models.PublishedCommentList;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.ReadingChapter;
 import com.example.novelshiveandroid.models.Status;
@@ -78,7 +80,7 @@ public interface JsonPlaceHolderApi {
 
     //Get Chapter Published Comments
     @GET("chapters/{id}/publishedCommentaries")
-    Call<List<Comment>> getChapterComments(@Path("id") int chapterId);
+    Call<PublishedCommentList> getChapterComments(@Path("id") int chapterId);
 
     //Get Chapter Infos To Display It
     @GET("chapters/{id}")

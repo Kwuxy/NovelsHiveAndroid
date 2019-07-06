@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.LightTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.ChapterCommentsActivity"></activity>
+        <activity android:name=".activities.ChapterCommentsActivity" />
         <activity android:name=".activities.StoryDetailsActivity" />
         <activity android:name=".activities.ReaderActivity" />
         <activity android:name=".activities.ProfilActivity" />
@@ -24,9 +24,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.SettingsActivity"
-            android:label="@string/action_settings"></activity>
+        <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

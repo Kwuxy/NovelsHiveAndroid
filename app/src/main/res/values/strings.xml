@@ -42,8 +42,17 @@
     <string name="img">img</string>
     <string name="chapter">Chapter </string>
 
+    <!-- Item chapter comment -->
+    <string name="username">Username</string>
+    <string name="commentText">CommentText</string>
+
     <string name="synopsis">Synopsis</string>
     <string name="chapters">Chapters</string>
 
     <string name="imgDescription">Hold story backdrop image"</string>
+
+    <string name="placeHolderUpdateDate">Last update : %1$s</string>
+    <string name="placeHolderPublicationDate">Publication date : %1$s</string>
+
+    <string name="action_comments">Comments</string>
 </resources>

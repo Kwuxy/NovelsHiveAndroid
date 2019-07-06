@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,8 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     private Toolbar myToolbar;
     private TextView tvChapterText;
 
+    private int chapterId;
+
     ReaderPresenter mReaderPresenter;
 
     @Override
@@ -37,11 +40,17 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
         initUI();
 
         Intent intent = getIntent();
-        int chapterId = intent.getIntExtra(KEY_CHAPTER_ID, 0);
+        chapterId = intent.getIntExtra(KEY_CHAPTER_ID, 0);
 
         mReaderPresenter = new ReaderViewModel(ReaderActivity.this);
         // Request data
         mReaderPresenter.getReadingChapterInfos(chapterId);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar_reader, menu);
+        return true;
     }
 
     private void configureToolbar() {
@@ -56,8 +65,21 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
-        return true;
+
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                return true;
+            case R.id.action_comments:
+                Intent chapterCommentsIntent = new Intent(this, ChapterCommentsActivity.class);
+                chapterCommentsIntent.putExtra(KEY_CHAPTER_ID, chapterId);
+                startActivity(chapterCommentsIntent);
+                return true;
+            default:
+                finish();
+                return true;
+        }
     }
 
     @Override

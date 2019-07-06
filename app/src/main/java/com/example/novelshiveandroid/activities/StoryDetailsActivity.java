@@ -24,8 +24,10 @@ import com.example.novelshiveandroid.presenters.StoryPresenter;
 import com.example.novelshiveandroid.viewModels.StoryViewModel;
 import com.example.novelshiveandroid.views.StoryView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static com.example.novelshiveandroid.Globals.KEY_CHAPTER_ID;
 import static com.example.novelshiveandroid.Globals.KEY_STORY_ID;
@@ -139,8 +141,12 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
         if (story != null) {
             storyTitle = story.getTitle();
             tvStoryTitle.setText(story.getTitle());
-            tvStoryUpdateDate.setText(story.getUpdate_date().toString());
-            tvStoryPublicationDate.setText(story.getPublication_date().toString());
+
+            // Format date
+            SimpleDateFormat format = new SimpleDateFormat("\nyyyy MMMM dd", Locale.ENGLISH);
+
+            tvStoryUpdateDate.setText(getString(R.string.placeHolderUpdateDate, format.format(story.getUpdate_date())));
+            tvStoryPublicationDate.setText(getString(R.string.placeHolderPublicationDate, format.format(story.getPublication_date())));
             String synopsis = mStoryPresenter.convertData((ArrayList<Double>)story.getSynopsis().get("data"));
             tvStorySynopsis.setText(synopsis);
         }

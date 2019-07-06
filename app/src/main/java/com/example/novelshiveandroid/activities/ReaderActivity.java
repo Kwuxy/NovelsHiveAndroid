@@ -72,6 +72,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
                 Intent chapterCommentsIntent = new Intent(this, ChapterCommentsActivity.class);
                 chapterCommentsIntent.putExtra(KEY_CHAPTER_ID, chapterId);
                 startActivity(chapterCommentsIntent);
+                return true;
             default:
                 finish();
                 return true;

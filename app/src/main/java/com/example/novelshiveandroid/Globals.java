@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.novelshiveandroid.models.Token;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class Globals extends Application {
@@ -33,5 +34,12 @@ public class Globals extends Application {
             instance = new Globals();
         }
         return instance;
+    }
+
+    public static String convertToText(ArrayList<Double> doubleData) {
+        byte[] data = new byte[doubleData.size()];
+        for(int i = 0; i < doubleData.size(); i++)
+            data[i] = doubleData.get(i).byteValue();
+        return new String(data);
     }
 }

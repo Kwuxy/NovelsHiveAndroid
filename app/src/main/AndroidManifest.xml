@@ -16,7 +16,7 @@
         <activity android:name=".activities.ChapterCommentsActivity" />
         <activity android:name=".activities.StoryDetailsActivity" />
         <activity android:name=".activities.ReaderActivity" />
-        <activity android:name=".activities.ProfilActivity" />
+        <activity android:name=".activities.ProfileActivity" />
         <activity
             android:name=".activities.HomeActivity"
             android:launchMode="singleTop">

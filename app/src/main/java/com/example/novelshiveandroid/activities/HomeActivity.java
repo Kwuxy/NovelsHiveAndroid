@@ -92,7 +92,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Intent intent;
         switch (item.getItemId()) {
             case R.id.activity_home_drawer_profile:
-                intent = new Intent(this, ProfilActivity.class);
+                intent = new Intent(this, ProfileActivity.class);
                 startActivity(intent);
                 break;
             case R.id.activity_home_drawer_parameters:

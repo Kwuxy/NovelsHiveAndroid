@@ -11,7 +11,7 @@ import com.example.novelshiveandroid.presenters.ProfilePresenter;
 import com.example.novelshiveandroid.viewModels.ProfileViewModel;
 import com.example.novelshiveandroid.views.ProfileView;
 
-public class ProfilActivity extends AppCompatActivity implements ProfileView {
+public class ProfileActivity extends AppCompatActivity implements ProfileView {
 
     private Toolbar myToolbar;
 
@@ -20,11 +20,11 @@ public class ProfilActivity extends AppCompatActivity implements ProfileView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profil);
+        setContentView(R.layout.activity_profile);
 
         this.configureToolbar();
 
-        mProfilePresenter = new ProfileViewModel(ProfilActivity.this);
+        mProfilePresenter = new ProfileViewModel(ProfileActivity.this);
     }
 
     private void configureToolbar() {

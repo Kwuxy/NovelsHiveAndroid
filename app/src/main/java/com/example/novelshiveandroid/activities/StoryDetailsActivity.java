@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.novelshiveandroid.Globals;
 import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.adapter.ChaptersAdapter;
 import com.example.novelshiveandroid.models.Chapter;
@@ -147,7 +148,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
             tvStoryUpdateDate.setText(getString(R.string.placeHolderUpdateDate, format.format(story.getUpdate_date())));
             tvStoryPublicationDate.setText(getString(R.string.placeHolderPublicationDate, format.format(story.getPublication_date())));
-            String synopsis = mStoryPresenter.convertData((ArrayList<Double>)story.getSynopsis().get("data"));
+            String synopsis = Globals.convertToText((ArrayList<Double>)story.getSynopsis().get("data"));
             tvStorySynopsis.setText(synopsis);
         }
     }

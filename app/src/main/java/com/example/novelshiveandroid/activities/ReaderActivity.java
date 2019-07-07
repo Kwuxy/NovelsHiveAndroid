@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.novelshiveandroid.Globals;
 import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.models.ReadingChapter;
 import com.example.novelshiveandroid.presenters.ReaderPresenter;
@@ -85,7 +86,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     @Override
     public void displayReadingChapter(ReadingChapter readingChapter) {
         if(readingChapter != null){
-            String chapterText = mReaderPresenter.convertText((ArrayList<Double>)readingChapter.getText().get("data"));
+            String chapterText = Globals.convertToText((ArrayList<Double>)readingChapter.getText().get("data"));
             tvChapterText.setText(Html.fromHtml(chapterText));
             getSupportActionBar().setTitle(readingChapter.getTitle());
             getIntent().putExtra(KEY_PREVIOUS_CHAPTER_ID, readingChapter.getPreviousChapter());

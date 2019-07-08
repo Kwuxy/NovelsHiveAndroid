@@ -45,6 +45,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
     private Boolean inFavorite;
     private int favoriteId;
+    private int storyId;
 
     private TextView tvStoryTitle;
     private TextView tvStoryPublicationDate;
@@ -79,7 +80,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar_story_details, menu);
         int userId = Globals.getCurrentToken().getUserId();
-        int storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
+        storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
         mStoryPresenter.checkIfStoryInUserFavorites(userId, storyId);
         return true;
     }
@@ -118,7 +119,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
         switch (item.getItemId()) {
             case R.id.action_add_to_favorites:
                 int userId = Globals.getCurrentToken().getUserId();
-                int storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
+                //int storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
                 if (!inFavorite){
                     mStoryPresenter.addToFavorites(userId, storyId);
                     setInFavoriteValue(true);
@@ -167,6 +168,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     public void onChapterItemClick(int position) {
         Intent readerIntent = new Intent(this, ReaderActivity.class);
         readerIntent.putExtra(KEY_CHAPTER_ID, chapters.get(position).getId());
+        readerIntent.putExtra(KEY_STORY_ID, storyId);
         startActivity(readerIntent);
     }
 

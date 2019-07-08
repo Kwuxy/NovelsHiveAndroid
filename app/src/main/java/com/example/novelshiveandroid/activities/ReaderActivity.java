@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.novelshiveandroid.Globals;
 import com.example.novelshiveandroid.R;
+import com.example.novelshiveandroid.models.Favorite;
 import com.example.novelshiveandroid.models.ReadingChapter;
 import com.example.novelshiveandroid.presenters.ReaderPresenter;
 import com.example.novelshiveandroid.viewModels.ReaderViewModel;
@@ -20,6 +21,7 @@ import com.example.novelshiveandroid.views.ReaderView;
 import java.util.ArrayList;
 
 import static com.example.novelshiveandroid.Globals.KEY_CHAPTER_ID;
+import static com.example.novelshiveandroid.Globals.KEY_STORY_ID;
 import static com.example.novelshiveandroid.Globals.KEY_PREVIOUS_CHAPTER_ID;
 import static com.example.novelshiveandroid.Globals.KEY_NEXT_CHAPTER_ID;
 
@@ -27,6 +29,10 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
 
     private Toolbar myToolbar;
     private TextView tvChapterText;
+
+    private Boolean inFavorite;
+    private int favoriteId;
+    private int storyId;
 
     private int chapterId;
 
@@ -43,6 +49,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
         Intent intent = getIntent();
         chapterId = intent.getIntExtra(KEY_CHAPTER_ID, 0);
 
+
         mReaderPresenter = new ReaderViewModel(ReaderActivity.this);
         // Request data
         mReaderPresenter.getReadingChapterInfos(chapterId);
@@ -51,6 +58,9 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar_reader, menu);
+        int userId = Globals.getCurrentToken().getUserId();
+        storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
+        mReaderPresenter.checkIfStoryInUserFavorites(userId, storyId);
         return true;
     }
 
@@ -68,6 +78,18 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+            case R.id.action_add_to_favorites:
+                int userId = Globals.getCurrentToken().getUserId();
+                //int storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
+                if (!inFavorite){
+                    mReaderPresenter.addToFavorites(userId, storyId);
+                    setInFavoriteValue(true);
+                }
+                else{
+                    mReaderPresenter.removeToFavorites(favoriteId);
+                    setInFavoriteValue(false);
+                }
+                return true;
             case R.id.action_settings:
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 startActivity(settingsIntent);
@@ -110,5 +132,31 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
             return;
         }
         mReaderPresenter.getReadingChapterInfos(nextChapterId.intValue());
+    }
+
+    @Override
+    public void displayFavoriteAdding() {
+        Toast.makeText(getApplicationContext(), "Story Added To Favorites", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void displayFavoriteDeleting() {
+        Toast.makeText(getApplicationContext(), "Story Deleted To Favorites", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void getFavoriteId(Favorite favorite) {
+        favoriteId = favorite.getId();
+    }
+
+    @Override
+    public void setInFavoriteValue(boolean checkingResult) {
+        if(checkingResult){
+            //Etoile pleine
+        }
+        else{
+            //etoile vide
+        }
+        inFavorite = checkingResult;
     }
 }

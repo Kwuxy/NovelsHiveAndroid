@@ -55,4 +55,8 @@
     <string name="placeHolderPublicationDate">Publication date : %1$s</string>
 
     <string name="action_comments">Comments</string>
+
+    <!-- Profile activity -->
+    <string name="edit">Edit</string>
+    <string name="profileImg">ProfileImg</string>
 </resources>

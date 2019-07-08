@@ -31,19 +31,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/imageView"
             android:layout_toRightOf="@+id/imageView"
+            android:paddingBottom="2.5dp"
             android:text="@string/username"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_chapter_comment_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_chapter_comment_user"
+            android:layout_toEndOf="@+id/imageView"
+            android:layout_toRightOf="@+id/imageView"
+            android:paddingTop="2.5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/update_date"
             android:textSize="12sp"
-            android:layout_toEndOf="@+id/imageView" />
+            android:textColor="@color/secondTextColor" />
 
         <TextView
             android:id="@+id/tv_chapter_comment_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_chapter_comment_user"
+            android:layout_below="@+id/tv_chapter_comment_date"
+            android:layout_toEndOf="@+id/imageView"
             android:layout_toRightOf="@+id/imageView"
-            android:text="@string/commentText"
-            android:layout_toEndOf="@+id/imageView" />
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/commentText" />
 
     </RelativeLayout>
 

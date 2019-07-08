@@ -160,7 +160,27 @@ public class StoryViewModel implements StoryPresenter {
                     System.out.print("Code : " + response.code());
                     return;
                 }
+                mStoryView.getFavoriteId(response.body());
                 mStoryView.displayFavoriteAdding();
+            }
+
+            @Override
+            public void onFailure(Call<Favorite> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void checkIfStoryInUserFavorites(int userId, int storyId) {
+        Call<Favorite> call = jsonPlaceHolderApi.checkStoryInUserFavorites(userId, storyId);
+        call.enqueue(new Callback<Favorite>() {
+            @Override
+            public void onResponse(Call<Favorite> call, Response<Favorite> response) {
+                if (response.isSuccessful()) {
+                    mStoryView.getFavoriteId(response.body());
+                }
+                mStoryView.setInFavoriteValue(response.isSuccessful());
             }
 
             @Override

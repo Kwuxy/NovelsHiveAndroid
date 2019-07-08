@@ -30,6 +30,7 @@ import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public interface JsonPlaceHolderApi {
@@ -113,6 +114,11 @@ public interface JsonPlaceHolderApi {
     //Get All Status For Story Searching Filters
     @GET("status")
     Call<List<Status>> getStatus();
+
+    //Check If User Has A Particular Story In favorite
+    @GET("favorites/findOne")
+    Call<Favorite> checkStoryInUserFavorites(@Query("filter[where][userId]") int userId, @Query("filter[where][storyId]") int storyId);
+
 
     //Register A New User
     @POST("users")

@@ -19,16 +19,16 @@ public class Globals extends Application {
 
     private static Globals instance;
 
-    private Token currentToken;
+    private static Token currentToken;
 
     public Globals(){}
 
-    public Token getCurrentToken() {
+    public static Token getCurrentToken() {
         return currentToken;
     }
 
-    public void setCurrentToken(Token currentToken) {
-        this.currentToken = currentToken;
+    public static void setCurrentToken(Token token) {
+        currentToken = token;
     }
 
     public static synchronized Globals getInstance(){

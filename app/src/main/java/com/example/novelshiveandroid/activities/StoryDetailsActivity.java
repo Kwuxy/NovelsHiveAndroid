@@ -124,7 +124,8 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
                     setInFavoriteValue(true);
                 }
                 else{
-                    //deleteFav
+                    mStoryPresenter.removeToFavorites(favoriteId);
+                    setInFavoriteValue(false);
                 }
                 return true;
             default:
@@ -217,8 +218,6 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     @Override
     public void displayFavoriteAdding() {
         Toast.makeText(getApplicationContext(), "Story Added To Favorites", Toast.LENGTH_LONG).show();
-        /*MenuItem favStar = (MenuItem)findViewById(R.id.action_add_to_favorites);
-        favStar.getIcon().setColorFilter(Color.BLUE);*/
     }
 
     @Override

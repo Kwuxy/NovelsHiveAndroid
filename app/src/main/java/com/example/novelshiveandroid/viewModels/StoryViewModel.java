@@ -151,7 +151,7 @@ public class StoryViewModel implements StoryPresenter {
     @Override
     public void addToFavorites(int userId, int storyId) {
         Favorite favorite = new Favorite(userId, storyId);
-        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        String tokenValue = Globals.getCurrentToken().getId();
         Call<Favorite> call = jsonPlaceHolderApi.addToFavorites(tokenValue, favorite);
         call.enqueue(new Callback<Favorite>() {
             @Override
@@ -166,6 +166,27 @@ public class StoryViewModel implements StoryPresenter {
 
             @Override
             public void onFailure(Call<Favorite> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void removeToFavorites(int favoriteId) {
+        String tokenValue = Globals.getCurrentToken().getId();
+        Call<Void> call = jsonPlaceHolderApi.removeToFavorites(tokenValue, favoriteId);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }
+                mStoryView.displayFavoriteDeleting();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 System.out.print(t.getMessage());
             }
         });

@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -140,4 +142,8 @@ public interface JsonPlaceHolderApi {
     //Change User Reading Environment (or Update User Infos If Needed Later)
     @PATCH("users/{id}")
     Call<User> updateUser(@Header("Authorization") String token, @Path("id") int id, @Body User user);
+
+    //Remove Story To User Favorites
+    @DELETE("favorites/{id}")
+    Call<Void> removeToFavorites(@Header("Authorization") String token, @Path("id") int favoriteId);
 }

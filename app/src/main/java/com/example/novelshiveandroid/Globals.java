@@ -17,8 +17,6 @@ public class Globals extends Application {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy MMMM dd", Locale.ENGLISH);
 
-    private static Globals instance;
-
     private static Token currentToken;
 
     public Globals(){}
@@ -29,13 +27,6 @@ public class Globals extends Application {
 
     public static void setCurrentToken(Token token) {
         currentToken = token;
-    }
-
-    public static synchronized Globals getInstance(){
-        if(instance==null){
-            instance = new Globals();
-        }
-        return instance;
     }
 
     public static String convertToText(ArrayList<Double> doubleData) {

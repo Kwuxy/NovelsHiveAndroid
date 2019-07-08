@@ -23,7 +23,7 @@ public class MyStoriesViewModel implements MyStoriesPresenter {
 
     @Override
     public void getUserStories(int userId) {
-        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        String tokenValue = Globals.getCurrentToken().getId();
         Call<List<Story>> call = jsonPlaceHolderApi.getUserStories(tokenValue, userId);
         call.enqueue(new Callback<List<Story>>() {
             @Override

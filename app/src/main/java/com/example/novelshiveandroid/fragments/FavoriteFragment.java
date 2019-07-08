@@ -48,7 +48,7 @@ public class FavoriteFragment extends Fragment implements FavoriteView {
         initUI();
 
         mFavoritePresenter = new FavoriteViewModel(this);
-        int userId = Globals.getInstance().getCurrentToken().getUserId();
+        int userId = Globals.getCurrentToken().getUserId();
         // Request Data
         mFavoritePresenter.getUserFavorites(userId);
         return rootView;

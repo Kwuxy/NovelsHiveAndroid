@@ -22,7 +22,7 @@ public class SettingsViewModel implements SettingsPresenter {
 
     @Override
     public void getUserSettings(int userId) {
-        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        String tokenValue = Globals.getCurrentToken().getId();
         Call<User> call = jsonPlaceHolderApi.getUserInfos(tokenValue, userId);
         call.enqueue(new Callback<User>() {
             @Override
@@ -45,7 +45,7 @@ public class SettingsViewModel implements SettingsPresenter {
 
     @Override
     public void changeSettings(User user, Integer font_size, String font_family, String realm) {
-        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        String tokenValue = Globals.getCurrentToken().getId();
         Call<User> call = jsonPlaceHolderApi.updateUser(tokenValue, user.getId(), user);
         call.enqueue(new Callback<User>() {
             @Override

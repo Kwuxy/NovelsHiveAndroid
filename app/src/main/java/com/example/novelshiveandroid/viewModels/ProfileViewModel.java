@@ -23,7 +23,7 @@ public class ProfileViewModel implements ProfilePresenter {
 
     @Override
     public void getUserInfos(int userId) {
-        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        String tokenValue = Globals.getCurrentToken().getId();
         Call<User> call = jsonPlaceHolderApi.getUserInfos(tokenValue, userId);
         call.enqueue(new Callback<User>() {
             @Override

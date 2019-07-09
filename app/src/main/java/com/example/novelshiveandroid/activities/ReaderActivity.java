@@ -1,12 +1,18 @@
 package com.example.novelshiveandroid.activities;
 
 import android.content.Intent;
+import android.support.v4.view.GestureDetectorCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,17 +25,23 @@ import com.example.novelshiveandroid.views.ReaderView;
 import java.util.ArrayList;
 
 import static com.example.novelshiveandroid.Globals.KEY_CHAPTER_ID;
-import static com.example.novelshiveandroid.Globals.KEY_PREVIOUS_CHAPTER_ID;
-import static com.example.novelshiveandroid.Globals.KEY_NEXT_CHAPTER_ID;
 
 public class ReaderActivity extends AppCompatActivity implements ReaderView {
 
     private Toolbar myToolbar;
     private TextView tvChapterText;
+    private NestedScrollView nestedScrollView;
 
     private int chapterId;
+    private Double previousChapterId;
+    private Double nextChapterId;
 
     ReaderPresenter mReaderPresenter;
+
+    private GestureDetectorCompat mDetector;
+    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_MAX_OFF_PATH = 250;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +57,20 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
         mReaderPresenter = new ReaderViewModel(ReaderActivity.this);
         // Request data
         mReaderPresenter.getReadingChapterInfos(chapterId);
+
+        mDetector = new GestureDetectorCompat(this, new MyGestureListener());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar_reader, menu);
         return true;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.mDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
     }
 
     private void configureToolbar() {
@@ -62,6 +82,14 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
 
     private void initUI() {
         tvChapterText = findViewById(R.id.tv_chapter_text);
+        nestedScrollView = findViewById(R.id.content_reader);
+        nestedScrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                onTouchEvent(event);
+                return false;
+            }
+        });
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -88,8 +116,8 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
             String chapterText = mReaderPresenter.convertText((ArrayList<Double>)readingChapter.getText().get("data"));
             tvChapterText.setText(Html.fromHtml(chapterText));
             getSupportActionBar().setTitle(readingChapter.getTitle());
-            getIntent().putExtra(KEY_PREVIOUS_CHAPTER_ID, readingChapter.getPreviousChapter());
-            getIntent().putExtra(KEY_NEXT_CHAPTER_ID, readingChapter.getNextChapter());
+            previousChapterId = readingChapter.getPreviousChapter();
+            nextChapterId = readingChapter.getNextChapter();
         }
     }
 
@@ -109,5 +137,38 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
             return;
         }
         mReaderPresenter.getReadingChapterInfos(nextChapterId.intValue());
+    }
+
+    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
+        private static final String DEBUG_TAG = "Gestures";
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            Log.d(DEBUG_TAG, "onDown: " + e.toString());
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            Log.d(DEBUG_TAG, "onFling: " + e1.toString() + e2.toString());
+
+            try {
+                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
+                    return false;
+                }
+                // right to left swipe
+                if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    goToNextChapter(nextChapterId);
+                }
+                // left to right swipe
+                else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    goToPreviousChapter(previousChapterId);
+                }
+            }
+            catch (Exception e) {
+                // nothing
+            }
+            return true;
+        }
     }
 }

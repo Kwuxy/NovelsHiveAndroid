@@ -35,6 +35,8 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     private TextView tvChapterText;
     private NestedScrollView nestedScrollView;
 
+    private MenuItem starFavorite;
+
     private Boolean inFavorite;
     private int favoriteId;
     private int storyId;
@@ -71,6 +73,8 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar_reader, menu);
+        starFavorite = menu.findItem(R.id.action_add_to_favorites);
+
         int userId = Globals.getCurrentToken().getUserId();
         storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
         mReaderPresenter.checkIfStoryInUserFavorites(userId, storyId);
@@ -181,10 +185,10 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     @Override
     public void setInFavoriteValue(boolean checkingResult) {
         if(checkingResult){
-            //Etoile pleine
+            starFavorite.setIcon(R.drawable.ic_baseline_yellow_star_24px);
         }
         else{
-            //etoile vide
+            starFavorite.setIcon(R.drawable.ic_baseline_star_24px);
         }
         inFavorite = checkingResult;
     }

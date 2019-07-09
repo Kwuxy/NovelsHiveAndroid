@@ -1,7 +1,6 @@
 package com.example.novelshiveandroid.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +20,6 @@ import com.example.novelshiveandroid.adapter.ChaptersAdapter;
 import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.models.Favorite;
 import com.example.novelshiveandroid.models.Kind;
-import com.example.novelshiveandroid.models.PublishedComment;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.Tag;
@@ -57,6 +55,8 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     private ProgressBar pbLoadBackDrop;
     private ProgressBar pbLoadChapters;
 
+    private MenuItem starFavorite;
+
     private StoryPresenter mStoryPresenter;
 
     @Override
@@ -79,6 +79,8 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar_story_details, menu);
+        starFavorite = menu.findItem(R.id.action_add_to_favorites);
+
         int userId = Globals.getCurrentToken().getUserId();
         storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
         mStoryPresenter.checkIfStoryInUserFavorites(userId, storyId);
@@ -119,7 +121,6 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
         switch (item.getItemId()) {
             case R.id.action_add_to_favorites:
                 int userId = Globals.getCurrentToken().getUserId();
-                //int storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
                 if (!inFavorite){
                     mStoryPresenter.addToFavorites(userId, storyId);
                     setInFavoriteValue(true);
@@ -134,6 +135,14 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
                 return true;
 
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        int userId = Globals.getCurrentToken().getUserId();
+        storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
+        mStoryPresenter.checkIfStoryInUserFavorites(userId, storyId);
+        super.onRestart();
     }
 
     private void initCollapsingToolbar() {
@@ -235,10 +244,10 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     @Override
     public void setInFavoriteValue(boolean checkingResult) {
         if(checkingResult){
-            //Etoile pleine
+            starFavorite.setIcon(R.drawable.ic_baseline_yellow_star_24px);
         }
         else{
-            //etoile vide
+            starFavorite.setIcon(R.drawable.ic_baseline_star_24px);
         }
         inFavorite = checkingResult;
     }

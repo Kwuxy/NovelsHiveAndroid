@@ -17,25 +17,16 @@ public class Globals extends Application {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy MMMM dd", Locale.ENGLISH);
 
-    private static Globals instance;
-
-    private Token currentToken;
+    private static Token currentToken;
 
     public Globals(){}
 
-    public Token getCurrentToken() {
+    public static Token getCurrentToken() {
         return currentToken;
     }
 
-    public void setCurrentToken(Token currentToken) {
-        this.currentToken = currentToken;
-    }
-
-    public static synchronized Globals getInstance(){
-        if(instance==null){
-            instance = new Globals();
-        }
-        return instance;
+    public static void setCurrentToken(Token token) {
+        currentToken = token;
     }
 
     public static String convertToText(ArrayList<Double> doubleData) {

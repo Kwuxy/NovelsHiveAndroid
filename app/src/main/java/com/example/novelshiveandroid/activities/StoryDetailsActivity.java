@@ -1,20 +1,25 @@
 package com.example.novelshiveandroid.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.novelshiveandroid.Globals;
 import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.adapter.ChaptersAdapter;
 import com.example.novelshiveandroid.models.Chapter;
+import com.example.novelshiveandroid.models.Favorite;
 import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.PublishedComment;
 import com.example.novelshiveandroid.models.Rating;
@@ -37,6 +42,10 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     private Toolbar myToolbar;
 
     private String storyTitle;
+
+    private Boolean inFavorite;
+    private int favoriteId;
+    private int storyId;
 
     private TextView tvStoryTitle;
     private TextView tvStoryPublicationDate;
@@ -65,6 +74,15 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
         // Request data
         mStoryPresenter.getStoryInfos(storyId);
         mStoryPresenter.getStoryChapters(storyId);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar_story_details, menu);
+        int userId = Globals.getCurrentToken().getUserId();
+        storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
+        mStoryPresenter.checkIfStoryInUserFavorites(userId, storyId);
+        return true;
     }
 
     private void configureToolbar() {
@@ -97,8 +115,25 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
-        return super.onOptionsItemSelected(item);
+
+        switch (item.getItemId()) {
+            case R.id.action_add_to_favorites:
+                int userId = Globals.getCurrentToken().getUserId();
+                //int storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
+                if (!inFavorite){
+                    mStoryPresenter.addToFavorites(userId, storyId);
+                    setInFavoriteValue(true);
+                }
+                else{
+                    mStoryPresenter.removeToFavorites(favoriteId);
+                    setInFavoriteValue(false);
+                }
+                return true;
+            default:
+                finish();
+                return true;
+
+        }
     }
 
     private void initCollapsingToolbar() {
@@ -133,6 +168,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     public void onChapterItemClick(int position) {
         Intent readerIntent = new Intent(this, ReaderActivity.class);
         readerIntent.putExtra(KEY_CHAPTER_ID, chapters.get(position).getId());
+        readerIntent.putExtra(KEY_STORY_ID, storyId);
         startActivity(readerIntent);
     }
 
@@ -147,7 +183,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
             tvStoryUpdateDate.setText(getString(R.string.placeHolderUpdateDate, format.format(story.getUpdate_date())));
             tvStoryPublicationDate.setText(getString(R.string.placeHolderPublicationDate, format.format(story.getPublication_date())));
-            String synopsis = mStoryPresenter.convertData((ArrayList<Double>)story.getSynopsis().get("data"));
+            String synopsis = Globals.convertToText((ArrayList<Double>)story.getSynopsis().get("data"));
             tvStorySynopsis.setText(synopsis);
         }
     }
@@ -183,6 +219,28 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
     @Override
     public void displayFavoriteAdding() {
-
+        Toast.makeText(getApplicationContext(), "Story Added To Favorites", Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void displayFavoriteDeleting() {
+        Toast.makeText(getApplicationContext(), "Story Deleted To Favorites", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void getFavoriteId(Favorite favorite) {
+        favoriteId = favorite.getId();
+    }
+
+    @Override
+    public void setInFavoriteValue(boolean checkingResult) {
+        if(checkingResult){
+            //Etoile pleine
+        }
+        else{
+            //etoile vide
+        }
+        inFavorite = checkingResult;
+    }
+
 }

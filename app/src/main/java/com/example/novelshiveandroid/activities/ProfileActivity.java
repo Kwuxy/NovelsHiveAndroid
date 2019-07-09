@@ -28,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
         this.configureToolbar();
         this.initUI();
 
-        int userId = Globals.getInstance().getCurrentToken().getUserId();
+        int userId = Globals.getCurrentToken().getUserId();
         mProfilePresenter = new ProfileViewModel(ProfileActivity.this);
         mProfilePresenter.getUserInfos(userId);
     }

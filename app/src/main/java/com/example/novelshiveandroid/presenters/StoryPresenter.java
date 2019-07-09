@@ -1,10 +1,7 @@
 package com.example.novelshiveandroid.presenters;
 
-import java.util.ArrayList;
-
 public interface StoryPresenter {
     void getStoryInfos(int storyId);
-    String convertData(ArrayList<Double> doubleData);
     void getStoryKind(int storyId);
     void getStoryRating(int storyId);
     void getStoryTags(int storyId);
@@ -12,4 +9,7 @@ public interface StoryPresenter {
     void getStoryChaptersCount(int storyId);
 
     void addToFavorites(int userId, int storyId);
+    void removeToFavorites(int favoriteId);
+
+    void checkIfStoryInUserFavorites(int userId, int storyId);
 }

@@ -53,6 +53,6 @@ public class LoginViewModel implements LoginPresenter {
 
     @Override
     public void setTokenOnGlobals(Token token) {
-        Globals.getInstance().setCurrentToken(token);
+        Globals.setCurrentToken(token);
     }
 }

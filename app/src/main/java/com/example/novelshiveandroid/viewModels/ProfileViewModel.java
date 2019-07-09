@@ -23,7 +23,7 @@ public class ProfileViewModel implements ProfilePresenter {
 
     @Override
     public void getUserInfos(int userId) {
-        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        String tokenValue = Globals.getCurrentToken().getId();
         Call<User> call = jsonPlaceHolderApi.getUserInfos(tokenValue, userId);
         call.enqueue(new Callback<User>() {
             @Override
@@ -40,13 +40,5 @@ public class ProfileViewModel implements ProfilePresenter {
                 System.out.print(t.getMessage());
             }
         });
-    }
-
-    @Override
-    public String convertDescription(ArrayList<Double> doubleData) {
-        byte[] data = new byte[doubleData.size()];
-        for(int i = 0; i < doubleData.size(); i++)
-            data[i] = doubleData.get(i).byteValue();
-        return new String(data);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.novelshiveandroid.viewModels;
 
+import com.example.novelshiveandroid.Globals;
+import com.example.novelshiveandroid.models.Favorite;
 import com.example.novelshiveandroid.models.ReadingChapter;
 import com.example.novelshiveandroid.presenters.ReaderPresenter;
 import com.example.novelshiveandroid.views.ReaderView;
@@ -41,10 +43,65 @@ public class ReaderViewModel implements ReaderPresenter {
     }
 
     @Override
-    public String convertText(ArrayList<Double> doubleData) {
-        byte[] data = new byte[doubleData.size()];
-        for(int i = 0; i < doubleData.size(); i++)
-            data[i] = doubleData.get(i).byteValue();
-        return new String(data);
+    public void addToFavorites(int userId, int storyId) {
+        Favorite favorite = new Favorite(userId, storyId);
+        String tokenValue = Globals.getCurrentToken().getId();
+        Call<Favorite> call = jsonPlaceHolderApi.addToFavorites(tokenValue, favorite);
+        call.enqueue(new Callback<Favorite>() {
+            @Override
+            public void onResponse(Call<Favorite> call, Response<Favorite> response) {
+                if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }
+                mReaderView.getFavoriteId(response.body());
+                mReaderView.displayFavoriteAdding();
+            }
+
+            @Override
+            public void onFailure(Call<Favorite> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void removeToFavorites(int favoriteId) {
+        String tokenValue = Globals.getCurrentToken().getId();
+        Call<Void> call = jsonPlaceHolderApi.removeToFavorites(tokenValue, favoriteId);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }
+                mReaderView.displayFavoriteDeleting();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void checkIfStoryInUserFavorites(int userId, int storyId) {
+        Call<Favorite> call = jsonPlaceHolderApi.checkStoryInUserFavorites(userId, storyId);
+        call.enqueue(new Callback<Favorite>() {
+            @Override
+            public void onResponse(Call<Favorite> call, Response<Favorite> response) {
+                if (response.isSuccessful()) {
+                    mReaderView.getFavoriteId(response.body());
+                }
+                mReaderView.setInFavoriteValue(response.isSuccessful());
+            }
+
+            @Override
+            public void onFailure(Call<Favorite> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
     }
 }

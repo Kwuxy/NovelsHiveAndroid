@@ -1,8 +1,11 @@
 package com.example.novelshiveandroid.presenters;
 
-import java.util.ArrayList;
-
 public interface ReaderPresenter {
     void getReadingChapterInfos(int chapterId);
-    String convertText(ArrayList<Double> doubleData);
+
+    void addToFavorites(int userId, int storyId);
+    void removeToFavorites(int favoriteId);
+
+    void checkIfStoryInUserFavorites(int userId, int storyId);
+
 }

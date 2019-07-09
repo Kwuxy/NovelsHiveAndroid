@@ -22,7 +22,7 @@ public class CommentWriterViewModel implements CommentWriterPresenter {
     @Override
     public void writeComment(String commentContent, int userWriterId, int storyChapterId) {
         Comment comment = new Comment(commentContent, userWriterId, storyChapterId);
-        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        String tokenValue = Globals.getCurrentToken().getId();
         Call<Comment> call = jsonPlaceHolderApi.createComment(tokenValue, comment);
         call.enqueue(new Callback<Comment>() {
             @Override

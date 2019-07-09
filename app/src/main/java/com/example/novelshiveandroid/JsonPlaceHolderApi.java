@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -30,6 +32,7 @@ import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public interface JsonPlaceHolderApi {
@@ -114,6 +117,11 @@ public interface JsonPlaceHolderApi {
     @GET("status")
     Call<List<Status>> getStatus();
 
+    //Check If User Has A Particular Story In favorite
+    @GET("favorites/findOne")
+    Call<Favorite> checkStoryInUserFavorites(@Query("filter[where][userId]") int userId, @Query("filter[where][storyId]") int storyId);
+
+
     //Register A New User
     @POST("users")
     Call<User> registerUser(@Body User user);
@@ -134,4 +142,8 @@ public interface JsonPlaceHolderApi {
     //Change User Reading Environment (or Update User Infos If Needed Later)
     @PATCH("users/{id}")
     Call<User> updateUser(@Header("Authorization") String token, @Path("id") int id, @Body User user);
+
+    //Remove Story To User Favorites
+    @DELETE("favorites/{id}")
+    Call<Void> removeToFavorites(@Header("Authorization") String token, @Path("id") int favoriteId);
 }

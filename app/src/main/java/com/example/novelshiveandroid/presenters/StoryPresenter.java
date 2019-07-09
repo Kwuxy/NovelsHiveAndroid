@@ -9,4 +9,7 @@ public interface StoryPresenter {
     void getStoryChaptersCount(int storyId);
 
     void addToFavorites(int userId, int storyId);
+    void removeToFavorites(int favoriteId);
+
+    void checkIfStoryInUserFavorites(int userId, int storyId);
 }

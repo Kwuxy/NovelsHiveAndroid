@@ -21,7 +21,7 @@ public class FavoriteViewModel implements FavoritePresenter {
 
     @Override
     public void getUserFavorites(int userId) {
-        String tokenValue = Globals.getInstance().getCurrentToken().getId();
+        String tokenValue = Globals.getCurrentToken().getId();
         Call<FavoriteList> call = jsonPlaceHolderApi.getUserFavorites(tokenValue, userId);
         call.enqueue(new Callback<FavoriteList>() {
             @Override

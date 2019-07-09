@@ -2,6 +2,7 @@ package com.example.novelshiveandroid.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,21 +11,21 @@ import android.widget.TextView;
 
 import com.example.novelshiveandroid.fragments.HomeFragment;
 import com.example.novelshiveandroid.R;
+import com.example.novelshiveandroid.fragments.SearchFragment;
 import com.example.novelshiveandroid.models.Story;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 import static com.example.novelshiveandroid.Globals.DATE_FORMAT;
 
-public class HomeStoryAdapter extends RecyclerView.Adapter<HomeStoryAdapter.MyViewHolder> {
+public class FragmentStoriesAdapter extends RecyclerView.Adapter<FragmentStoriesAdapter.MyViewHolder> {
 
-    private HomeFragment homeFragment;
+    //private HomeFragment homeFragment;
+    private Fragment fragment;
     private List<Story> stories;
 
-    public HomeStoryAdapter(HomeFragment homeFragment, List<Story> stories) {
-        this.homeFragment = homeFragment;
+    public FragmentStoriesAdapter(Fragment fragment, List<Story> stories) {
+        this.fragment = fragment;
         this.stories = stories;
     }
 
@@ -51,7 +52,12 @@ public class HomeStoryAdapter extends RecyclerView.Adapter<HomeStoryAdapter.MyVi
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                homeFragment.onStoryItemClick(i);
+                if (fragment instanceof HomeFragment) {
+                    ((HomeFragment) fragment).onStoryItemClick(i);
+                }
+                else if (fragment instanceof SearchFragment) {
+                    ((SearchFragment)fragment).onStoryItemClick(i);
+                }
             }
         });
     }

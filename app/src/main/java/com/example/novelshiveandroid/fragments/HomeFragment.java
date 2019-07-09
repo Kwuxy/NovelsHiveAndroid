@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.activities.StoryDetailsActivity;
-import com.example.novelshiveandroid.adapter.HomeStoryAdapter;
+import com.example.novelshiveandroid.adapter.FragmentStoriesAdapter;
 import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.presenters.HomePresenter;
 import com.example.novelshiveandroid.viewModels.HomeViewModel;
@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment implements HomeView {
     private View rootView;
     private RecyclerView rvAllStories;
     private ArrayList<Story> allStories;
-    private HomeStoryAdapter homeStoryAdapter;
+    private FragmentStoriesAdapter fragmentStoriesAdapter;
     private HomePresenter mHomePresenter;
 
     public HomeFragment() {
@@ -59,8 +59,8 @@ public class HomeFragment extends Fragment implements HomeView {
         rvAllStories.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         allStories = new ArrayList<>();
-        homeStoryAdapter = new HomeStoryAdapter(this, allStories);
-        rvAllStories.setAdapter(homeStoryAdapter);
+        fragmentStoriesAdapter = new FragmentStoriesAdapter(this, allStories);
+        rvAllStories.setAdapter(fragmentStoriesAdapter);
     }
 
     public void onStoryItemClick(int position) {
@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment implements HomeView {
         if (!stories.isEmpty()) {
             allStories.clear();
             allStories.addAll(stories);
-            homeStoryAdapter.notifyDataSetChanged();
+            fragmentStoriesAdapter.notifyDataSetChanged();
         }
     }
 }

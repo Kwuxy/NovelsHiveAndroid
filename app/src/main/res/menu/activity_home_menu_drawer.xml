@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/activity_home_drawer_profile"
+            android:icon="@drawable/ic_round_account_circle_24px"
+            android:title="@string/navigation_drawer_item_1" />
+    </group>
+
+    <item android:title="Configuration">
+        <menu>
+            <group android:checkableBehavior="none">
+                <item
+                    android:id="@+id/activity_home_drawer_parameters"
+                    android:icon="@drawable/ic_baseline_settings_20px"
+                    android:title="@string/navigation_drawer_item_2" />
+            </group>
+        </menu>
+    </item>
+</menu>

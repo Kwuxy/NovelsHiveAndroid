@@ -1,3 +1,59 @@
 <resources>
-    <string name="app_name">NovelsHiveAndroid</string>
+    <string name="app_name">NovelsHive</string>
+
+    <!-- LoginActivity -->
+    <string name="title_login_activity">Login to NovelsHive</string>
+    <string name="btn_sign_in_label">Sign In</string>
+    <string name="et_password_hint">Password</string>
+    <string name="et_email_hint">Email</string>
+
+    <string name="error_field_required">Field required</string>
+
+    <!-- Bottom Navigation view -->
+    <string name="bottom_navigation_menu_home">Home</string>
+    <string name="bottom_navigation_menu_favorite">Favorite</string>
+    <string name="bottom_navigation_menu_search">Search</string>
+
+    <!-- Navigation drawer -->
+    <string name="navigation_drawer_item_1">My profile</string>
+    <string name="navigation_drawer_item_2">Parameters</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Settings -->
+    <string name="action_settings">Settings</string>
+    <string name="dark_theme">Dark theme</string>
+    <string name="change_text_font_size">Change text font size</string>
+
+    <!-- Key name for text font size preference in SharedPreferences -->
+    <string name="pref_text_font_size_key" translatable="false">fontSize</string>
+    <string name="pref_dark_theme_bool_key" translatable="false">darkThemeBool</string>
+
+    <string name="arrays__small">Small</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Large</string>
+    <string name="arrays__extra_large">Extra large</string>
+
+    <!-- Search -->
+    <string name="search_hint">Search something...</string>
+
+    <string name="title">Title</string>
+    <string name="update_date">Last update date</string>
+    <string name="img">img</string>
+    <string name="chapter">Chapter </string>
+
+    <!-- Item chapter comment -->
+    <string name="username">Username</string>
+    <string name="commentText">CommentText</string>
+
+    <string name="synopsis">Synopsis</string>
+    <string name="chapters">Chapters</string>
+
+    <string name="imgDescription">Hold story backdrop image"</string>
+
+    <string name="placeHolderUpdateDate">Last update : %1$s</string>
+    <string name="placeHolderPublicationDate">Publication date : %1$s</string>
+
+    <string name="action_comments">Comments</string>
+    <string name="action_add_to_favorites">Add To favorites</string>
 </resources>

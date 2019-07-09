@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/pref_dark_theme_bool_key"
+        android:title="@string/dark_theme" />
+
+    <ListPreference
+        android:defaultValue="Normal"
+        android:entries="@array/pref_message_font_size_entries"
+        android:entryValues="@array/pref_text_font_size_values"
+        android:key="@string/pref_text_font_size_key"
+        android:title="@string/change_text_font_size" />
+
+</PreferenceScreen>

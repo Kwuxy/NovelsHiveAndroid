@@ -91,7 +91,7 @@ public interface JsonPlaceHolderApi {
 
     //Get Reading Chapter Infos To Display It
     @GET("chapters/{id}/read")
-    Call<ReadingChapter> getReadingChapterInfos(@Path("id") int chapterId);
+    Call<ReadingChapter> getReadingChapterInfos(@Path("id") int chapterId, @Query("userId") int userId);
 
     //Get All Tags For Story Searching Filters
     @GET("tags")

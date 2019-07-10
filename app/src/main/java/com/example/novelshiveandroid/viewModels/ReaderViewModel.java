@@ -23,8 +23,8 @@ public class ReaderViewModel implements ReaderPresenter {
     }
 
     @Override
-    public void getReadingChapterInfos(int chapterId) {
-        Call<ReadingChapter> call = jsonPlaceHolderApi.getReadingChapterInfos(chapterId);
+    public void getReadingChapterInfos(int chapterId, int userId) {
+        Call<ReadingChapter> call = jsonPlaceHolderApi.getReadingChapterInfos(chapterId, userId);
         call.enqueue(new Callback<ReadingChapter>() {
             @Override
             public void onResponse(Call<ReadingChapter> call, Response<ReadingChapter> response) {

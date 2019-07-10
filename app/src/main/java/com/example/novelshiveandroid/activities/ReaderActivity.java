@@ -40,6 +40,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     private Boolean inFavorite;
     private int favoriteId;
     private int storyId;
+    private int userId;
 
     private int chapterId;
     private Double previousChapterId;
@@ -62,10 +63,11 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
 
         Intent intent = getIntent();
         chapterId = intent.getIntExtra(KEY_CHAPTER_ID, 0);
+        userId = Globals.getCurrentToken().getUserId();
 
         mReaderPresenter = new ReaderViewModel(ReaderActivity.this);
         // Request data
-        mReaderPresenter.getReadingChapterInfos(chapterId);
+        mReaderPresenter.getReadingChapterInfos(chapterId, userId);
 
         mDetector = new GestureDetectorCompat(this, new MyGestureListener());
     }
@@ -153,7 +155,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
             Toast.makeText(getApplicationContext(), "This is the first chapter of this story !", Toast.LENGTH_LONG).show();
             return;
         }
-        mReaderPresenter.getReadingChapterInfos(previousChapterId.intValue());
+        mReaderPresenter.getReadingChapterInfos(previousChapterId.intValue(), userId);
     }
 
     @Override
@@ -162,7 +164,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
             Toast.makeText(getApplicationContext(), "This is the last published chapter of this story !", Toast.LENGTH_LONG).show();
             return;
         }
-        mReaderPresenter.getReadingChapterInfos(nextChapterId.intValue());
+        mReaderPresenter.getReadingChapterInfos(nextChapterId.intValue(), userId);
     }
 
 

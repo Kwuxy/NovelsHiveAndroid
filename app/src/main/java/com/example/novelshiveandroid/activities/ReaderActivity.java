@@ -40,6 +40,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
     private Boolean inFavorite;
     private int favoriteId;
     private int storyId;
+    private int userId;
 
     private int chapterId;
     private Double previousChapterId;
@@ -62,10 +63,11 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
 
         Intent intent = getIntent();
         chapterId = intent.getIntExtra(KEY_CHAPTER_ID, 0);
+        userId = Globals.getCurrentToken().getUserId();
 
         mReaderPresenter = new ReaderViewModel(ReaderActivity.this);
         // Request data
-        mReaderPresenter.getReadingChapterInfos(chapterId);
+        mReaderPresenter.getReadingChapterInfos(chapterId, userId);
 
         mDetector = new GestureDetectorCompat(this, new MyGestureListener());
     }
@@ -75,9 +77,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
         getMenuInflater().inflate(R.menu.menu_toolbar_reader, menu);
         starFavorite = menu.findItem(R.id.action_add_to_favorites);
 
-        int userId = Globals.getCurrentToken().getUserId();
         storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
-        mReaderPresenter.checkIfStoryInUserFavorites(userId, storyId);
         return true;
     }
 
@@ -111,7 +111,6 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
         switch (item.getItemId()) {
             case R.id.action_add_to_favorites:
                 int userId = Globals.getCurrentToken().getUserId();
-                //int storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
                 if (!inFavorite){
                     mReaderPresenter.addToFavorites(userId, storyId);
                     setInFavoriteValue(true);
@@ -144,6 +143,13 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
             getSupportActionBar().setTitle(readingChapter.getTitle());
             previousChapterId = readingChapter.getPreviousChapter();
             nextChapterId = readingChapter.getNextChapter();
+            if(readingChapter.getFavoriteId() != null){
+                favoriteId = readingChapter.getFavoriteId().intValue();
+                setInFavoriteValue(true);
+            }
+            else {
+                setInFavoriteValue(false);
+            }
         }
     }
 
@@ -153,7 +159,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
             Toast.makeText(getApplicationContext(), "This is the first chapter of this story !", Toast.LENGTH_LONG).show();
             return;
         }
-        mReaderPresenter.getReadingChapterInfos(previousChapterId.intValue());
+        mReaderPresenter.getReadingChapterInfos(previousChapterId.intValue(), userId);
     }
 
     @Override
@@ -162,7 +168,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
             Toast.makeText(getApplicationContext(), "This is the last published chapter of this story !", Toast.LENGTH_LONG).show();
             return;
         }
-        mReaderPresenter.getReadingChapterInfos(nextChapterId.intValue());
+        mReaderPresenter.getReadingChapterInfos(nextChapterId.intValue(), userId);
     }
 
 

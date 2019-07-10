@@ -28,6 +28,7 @@ import com.example.novelshiveandroid.presenters.SearchPresenter;
 import com.example.novelshiveandroid.viewModels.SearchViewModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.example.novelshiveandroid.Globals.KEY_STORY_ID;
@@ -107,6 +108,15 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
                 return false;
             }
         });
+    }
+
+    @Override
+    public void displayStories(List<Story> stories) {
+        if (!stories.isEmpty()) {
+            searchStories.clear();
+            searchStories.addAll(stories);
+            fragmentStoriesAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

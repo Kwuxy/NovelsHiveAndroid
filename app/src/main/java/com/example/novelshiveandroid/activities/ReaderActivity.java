@@ -77,9 +77,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
         getMenuInflater().inflate(R.menu.menu_toolbar_reader, menu);
         starFavorite = menu.findItem(R.id.action_add_to_favorites);
 
-        int userId = Globals.getCurrentToken().getUserId();
         storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
-        mReaderPresenter.checkIfStoryInUserFavorites(userId, storyId);
         return true;
     }
 
@@ -113,7 +111,6 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
         switch (item.getItemId()) {
             case R.id.action_add_to_favorites:
                 int userId = Globals.getCurrentToken().getUserId();
-                //int storyId = getIntent().getIntExtra(KEY_STORY_ID, 0);
                 if (!inFavorite){
                     mReaderPresenter.addToFavorites(userId, storyId);
                     setInFavoriteValue(true);
@@ -146,6 +143,13 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
             getSupportActionBar().setTitle(readingChapter.getTitle());
             previousChapterId = readingChapter.getPreviousChapter();
             nextChapterId = readingChapter.getNextChapter();
+            if(readingChapter.getFavoriteId() != null){
+                favoriteId = readingChapter.getFavoriteId().intValue();
+                setInFavoriteValue(true);
+            }
+            else {
+                setInFavoriteValue(false);
+            }
         }
     }
 

@@ -29,7 +29,9 @@ import com.example.novelshiveandroid.viewModels.SearchViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.example.novelshiveandroid.Globals.KEY_STORY_ID;
 
@@ -44,9 +46,11 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
     private ArrayList<Story> searchStories;
     private FragmentStoriesAdapter fragmentStoriesAdapter;
     SearchPresenter mSearchPresenter;
+    private Map filters;
 
 
     public SearchFragment() {
+        filters = new HashMap();
         // Required empty public constructor
     }
 
@@ -73,7 +77,7 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
         fragmentStoriesAdapter = new FragmentStoriesAdapter(this, searchStories);
         rvSearchStories.setAdapter(fragmentStoriesAdapter);
         // On cache la recycler view
-        rvSearchStories.setVisibility(View.GONE);
+        //rvSearchStories.setVisibility(View.GONE);
     }
 
     public void onStoryItemClick(int position) {
@@ -100,6 +104,10 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                //Get Value For Title Filters
+                filters.put("storyTitle", query);
+                mSearchPresenter.searchStories(filters);
+                
                 return false;
             }
 
@@ -109,6 +117,8 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
             }
         });
     }
+
+
 
     @Override
     public void displayStories(List<Story> stories) {

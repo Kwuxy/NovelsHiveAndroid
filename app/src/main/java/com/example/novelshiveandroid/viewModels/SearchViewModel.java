@@ -9,6 +9,7 @@ import com.example.novelshiveandroid.models.Tag;
 import com.example.novelshiveandroid.models.Universe;
 import com.example.novelshiveandroid.presenters.SearchPresenter;
 import com.example.novelshiveandroid.views.SearchView;
+import com.google.gson.Gson;
 
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,9 @@ public class SearchViewModel implements SearchPresenter {
 
     @Override
     public void searchStories(Map<String, Object> parameters) {
-        Call<List<Story>> call = jsonPlaceHolderApi.getStories(parameters);
+        Gson gson = new Gson();
+        String jsonFilters = "{\"where\" : " + gson.toJson(parameters) + "}";
+        Call<List<Story>> call = jsonPlaceHolderApi.getStories(jsonFilters);
         call.enqueue(new Callback<List<Story>>() {
             @Override
             public void onResponse(retrofit2.Call<List<Story>> call, Response<List<Story>> response) {

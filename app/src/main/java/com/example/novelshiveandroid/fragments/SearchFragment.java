@@ -105,9 +105,10 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //Get Value For Title Filters
-                filters.put("storyTitle", query);
+                filters.clear();
+                filters.put("title", query);
                 mSearchPresenter.searchStories(filters);
-                
+
                 return false;
             }
 
@@ -122,11 +123,11 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
 
     @Override
     public void displayStories(List<Story> stories) {
+        searchStories.clear();
         if (!stories.isEmpty()) {
-            searchStories.clear();
             searchStories.addAll(stories);
-            fragmentStoriesAdapter.notifyDataSetChanged();
         }
+        fragmentStoriesAdapter.notifyDataSetChanged();
     }
 
     @Override

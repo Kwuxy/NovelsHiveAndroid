@@ -4,12 +4,15 @@ import com.example.novelshiveandroid.models.Kind;
 import com.example.novelshiveandroid.models.Language;
 import com.example.novelshiveandroid.models.Rating;
 import com.example.novelshiveandroid.models.Status;
+import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.Tag;
 import com.example.novelshiveandroid.models.Universe;
 import com.example.novelshiveandroid.presenters.SearchPresenter;
 import com.example.novelshiveandroid.views.SearchView;
+import com.google.gson.Gson;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +26,28 @@ public class SearchViewModel implements SearchPresenter {
 
     public SearchViewModel(SearchView mSearchView) {
         this.mSearchView = mSearchView;
+    }
+
+    @Override
+    public void searchStories(Map<String, Object> parameters) {
+        Gson gson = new Gson();
+        String jsonFilters = "{\"where\" : " + gson.toJson(parameters) + "}";
+        Call<List<Story>> call = jsonPlaceHolderApi.getStories(jsonFilters);
+        call.enqueue(new Callback<List<Story>>() {
+            @Override
+            public void onResponse(retrofit2.Call<List<Story>> call, Response<List<Story>> response) {
+                /*if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }*/
+                mSearchView.displayStories(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Story>> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
     }
 
     @Override

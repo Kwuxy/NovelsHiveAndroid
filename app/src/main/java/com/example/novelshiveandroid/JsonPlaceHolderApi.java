@@ -17,6 +17,7 @@ import com.example.novelshiveandroid.models.TagList;
 import com.example.novelshiveandroid.models.Token;
 import com.example.novelshiveandroid.models.Universe;
 import com.example.novelshiveandroid.models.User;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.List;
 import java.util.Map;
@@ -116,6 +117,11 @@ public interface JsonPlaceHolderApi {
     //Get All Status For Story Searching Filters
     @GET("status")
     Call<List<Status>> getStatus();
+
+    //Get Story Image
+    @GET("containers/{container}/files/{file}/read")
+    Call<LinkedTreeMap> getStoryImageBuffer(@Path("container") String container, @Path("file") String filePath);
+
 
     //Check If User Has A Particular Story In favorite
     @GET("favorites/findOne")

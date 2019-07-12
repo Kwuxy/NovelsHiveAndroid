@@ -1,5 +1,7 @@
 package com.example.novelshiveandroid.views;
 
+import android.graphics.Bitmap;
+
 import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.models.Comment;
 import com.example.novelshiveandroid.models.Favorite;
@@ -16,6 +18,7 @@ public interface StoryView {
     void displayStoryKind(Kind kind);
     void displayStoryRating(Rating rating);
     void displayStoryTags(List<Tag> tags);
+    void displayStoryImage(Bitmap bmpImage);
     void displayStoryChapters(List<Chapter> chapters);
     void displayStoryChaptersCount(Integer count);
 

@@ -52,7 +52,7 @@ public class AddChapterCommentActivity extends AppCompatActivity implements Comm
 
     public void submitComment(View view) {
         String commentText = etTextComment.getText().toString();
-        int idUser = Globals.getInstance().getCurrentToken().getUserId();
+        int idUser = Globals.getCurrentToken().getUserId();
 
         this.commentWriterPresenter.writeComment(commentText, idUser, idChapter);
     }

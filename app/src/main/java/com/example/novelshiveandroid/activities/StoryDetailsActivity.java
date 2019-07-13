@@ -1,6 +1,9 @@
 package com.example.novelshiveandroid.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +59,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     private ProgressBar pbLoadBackDrop;
     private ProgressBar pbLoadChapters;
 
+    private ImageView storyImage;
     private MenuItem starFavorite;
 
     private StoryPresenter mStoryPresenter;
@@ -149,6 +154,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
         final CollapsingToolbarLayout collapsingToolbar =
                 findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(" ");
+        storyImage = findViewById(R.id.iv_backdrop);
 
         AppBarLayout appBarLayout = findViewById(R.id.appbar);
         appBarLayout.setExpanded(true);
@@ -209,6 +215,27 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
     @Override
     public void displayStoryTags(List<Tag> tags) {
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public void displayStoryImage(Bitmap bmpImage) {
+        CollapsingToolbarLayout collapsingToolbar =
+                findViewById(R.id.collapsing_toolbar);
+        storyImage.setMaxWidth(collapsingToolbar.getWidth());
+        storyImage.setMaxHeight(collapsingToolbar.getHeight());
+
+        int bmpWidth = bmpImage.getWidth();
+        if(bmpWidth > storyImage.getMaxWidth()){
+            bmpWidth = storyImage.getMaxWidth();
+        }
+        int bmpHeight = bmpImage.getHeight();
+        if(bmpHeight > storyImage.getMaxHeight()){
+            bmpHeight = storyImage.getMaxHeight();
+        }
+
+        storyImage.setImageBitmap(Bitmap.createScaledBitmap(bmpImage, bmpWidth, bmpHeight, false));
 
     }
 

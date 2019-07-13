@@ -32,11 +32,13 @@
 
                 <ImageView
                     android:id="@+id/iv_backdrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
                     android:contentDescription="@string/imgDescription" />
 
                 <ProgressBar

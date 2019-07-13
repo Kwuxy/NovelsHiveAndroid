@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Comment {
 
@@ -14,11 +15,13 @@ public class Comment {
 
     private int userId;
     private int storyChapterId;
+    private Date publication_date;
 
     public Comment(String text, int userId, int storyChapterId) {
         this.text = convertStringToLinkedTreeMap(text);
         this.userId = userId;
         this.storyChapterId = storyChapterId;
+        this.publication_date = new Date();
     }
 
     public Integer getId() {

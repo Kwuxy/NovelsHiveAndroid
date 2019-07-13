@@ -31,4 +31,8 @@ public class ReadingChapter {
     public Double getNextChapter() {
         return (Double)((LinkedTreeMap)chapter.get("nextChapter")).get("id");
     }
+
+    public Double getFavoriteId() {
+        return (Double) (chapter.get("favoriteId"));
+    }
 }

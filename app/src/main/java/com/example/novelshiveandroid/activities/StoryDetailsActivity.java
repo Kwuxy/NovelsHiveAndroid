@@ -2,6 +2,8 @@ package com.example.novelshiveandroid.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -216,9 +218,25 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void displayStoryImage(Bitmap bmpImage) {
-        storyImage.setImageBitmap(Bitmap.createScaledBitmap(bmpImage, 600, 900, false));
+        CollapsingToolbarLayout collapsingToolbar =
+                findViewById(R.id.collapsing_toolbar);
+        storyImage.setMaxWidth(collapsingToolbar.getWidth());
+        storyImage.setMaxHeight(collapsingToolbar.getHeight());
+
+        int bmpWidth = bmpImage.getWidth();
+        if(bmpWidth > storyImage.getMaxWidth()){
+            bmpWidth = storyImage.getMaxWidth();
+        }
+        int bmpHeight = bmpImage.getHeight();
+        if(bmpHeight > storyImage.getMaxHeight()){
+            bmpHeight = storyImage.getMaxHeight();
+        }
+
+        storyImage.setImageBitmap(Bitmap.createScaledBitmap(bmpImage, bmpWidth, bmpHeight, false));
+
     }
 
     @Override

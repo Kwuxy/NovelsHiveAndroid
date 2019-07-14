@@ -19,9 +19,9 @@ import com.example.novelshiveandroid.views.LoginView;
 
 public class LoginActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener, LoginView {
 
-    private EditText et_email;
+    private EditText et_username;
     private EditText et_password;
-    private String email;
+    private String username;
     private String password;
 
     LoginPresenter mLoginPresenter;
@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements SharedPreference
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        et_email = findViewById(R.id.et_email);
+        et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
@@ -71,12 +71,12 @@ public class LoginActivity extends AppCompatActivity implements SharedPreference
         }
         else {
             // Connection
-            mLoginPresenter.performLogin(email, password);
+            mLoginPresenter.performLogin(username, password);
         }
     }
 
     private boolean loginValidation() {
-        email = et_email.getText().toString();
+        username = et_username.getText().toString();
         password = et_password.getText().toString();
 
         boolean cancel = false;
@@ -84,8 +84,8 @@ public class LoginActivity extends AppCompatActivity implements SharedPreference
             et_password.setError(getString(R.string.error_field_required));
             cancel = true;
         }
-        if (TextUtils.isEmpty(email)) {
-            et_email.setError(getString(R.string.error_field_required));
+        if (TextUtils.isEmpty(username)) {
+            et_username.setError(getString(R.string.error_field_required));
             cancel = true;
         }
 

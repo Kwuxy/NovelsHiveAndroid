@@ -5,7 +5,7 @@
     <string name="title_login_activity">Login to NovelsHive</string>
     <string name="btn_sign_in_label">Sign In</string>
     <string name="et_password_hint">Password</string>
-    <string name="et_email_hint">Email</string>
+    <string name="et_username_hint">Username</string>
 
     <string name="error_field_required">Field required</string>
 

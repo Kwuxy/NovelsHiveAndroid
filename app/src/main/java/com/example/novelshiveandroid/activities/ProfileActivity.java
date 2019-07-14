@@ -1,9 +1,11 @@
 package com.example.novelshiveandroid.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.novelshiveandroid.Globals;
@@ -53,6 +55,11 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
     public boolean onOptionsItemSelected(MenuItem item) {
         finish();
         return true;
+    }
+
+    public void myStories(View view) {
+        Intent intent = new Intent(this, MyStoriesActivity.class);
+        startActivity(intent);
     }
 
     @Override

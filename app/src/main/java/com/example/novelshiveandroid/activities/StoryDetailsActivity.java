@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.chip.Chip;
+import android.support.design.chip.ChipGroup;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,6 +61,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     private List<Chapter> chapters;
     private ProgressBar pbLoadBackDrop;
     private ProgressBar pbLoadChapters;
+    private ChipGroup chipGroup;
 
     private ImageView storyImage;
     private MenuItem starFavorite;
@@ -79,6 +83,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
         // Request data
         mStoryPresenter.getStoryInfos(storyId);
         mStoryPresenter.getStoryChapters(storyId);
+        mStoryPresenter.getStoryTags(storyId);
     }
 
     @Override
@@ -118,6 +123,8 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
         // Hide progress bar for now
         pbLoadBackDrop.setVisibility(View.GONE);
         pbLoadChapters.setVisibility(View.GONE);
+
+        chipGroup = findViewById(R.id.tag_group);
     }
 
     @Override
@@ -215,7 +222,29 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
     @Override
     public void displayStoryTags(List<Tag> tags) {
-
+        for (int i = 0; i < tags.size(); i++) {
+            final String tagName = tags.get(i).getName();
+            final Chip chip = new Chip(this);
+            int paddingDp = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 10,
+                    getResources().getDisplayMetrics()
+            );
+            chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp);
+            chip.setText(tagName);
+            //chip.setCloseIconResource(R.drawable.ic_action_navigation_close);
+            //chip.setCloseIconEnabled(true);
+            //Added click listener on close icon to remove tag from ChipGroup
+            /*
+            chip.setOnCloseIconClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tagList.remove(tagName);
+                    chipGroup.removeView(chip);
+                }
+            });
+            */
+            chipGroup.addView(chip);
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

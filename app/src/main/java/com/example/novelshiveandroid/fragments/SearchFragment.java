@@ -11,6 +11,7 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -47,6 +48,8 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
     private FragmentStoriesAdapter fragmentStoriesAdapter;
     SearchPresenter mSearchPresenter;
     private Map filters;
+    private ArrayList<Map> kindsFilters;
+    private Menu myMenu;
 
 
     public SearchFragment() {
@@ -74,6 +77,7 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
         rvSearchStories.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         searchStories = new ArrayList<>();
+        kindsFilters = new ArrayList<>();
         fragmentStoriesAdapter = new FragmentStoriesAdapter(this, searchStories);
         rvSearchStories.setAdapter(fragmentStoriesAdapter);
         // On cache la recycler view
@@ -105,7 +109,8 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //Get Value For Title Filters
-                filters.clear();
+                if(filters.containsKey("title"))
+                    filters.remove("title");
                 filters.put("title", query);
                 mSearchPresenter.searchStories(filters);
 
@@ -114,9 +119,16 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if(newText.isEmpty()){
+                    filters.remove("title");
+                    mSearchPresenter.searchStories(filters);
+                }
+
                 return false;
             }
         });
+        myMenu = menu;
+        mSearchPresenter.getKinds();
     }
 
 
@@ -124,8 +136,14 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
     @Override
     public void displayStories(List<Story> stories) {
         searchStories.clear();
-        if (!stories.isEmpty()) {
+        if (stories != null) {
             searchStories.addAll(stories);
+        }
+        if(filters.size() == 0){
+            rvSearchStories.setVisibility(View.GONE);
+        }
+        else {
+            rvSearchStories.setVisibility(View.VISIBLE);
         }
         fragmentStoriesAdapter.notifyDataSetChanged();
     }
@@ -137,7 +155,36 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
 
     @Override
     public void displayKinds(List<Kind> kinds) {
+        kindsFilters.clear();
+        for (Kind kind : kinds){
+            myMenu.add(Menu.NONE, kind.getId(), Menu.NONE, kind.getName());
+            myMenu.getItem(kind.getId()).setCheckable(true);
+            myMenu.getItem(kind.getId()).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    Map mapfilter = new HashMap();
+                    mapfilter.put("storyKindId", String.valueOf(item.getItemId()));
+                    if(item.isChecked()){
+                        kindsFilters.remove(mapfilter);
+                        item.setChecked(false);
+                    }
+                    else{
 
+                        kindsFilters.add(mapfilter);
+                        item.setChecked(true);
+                    }
+                    if(kindsFilters.isEmpty()){
+                        filters.remove("or");
+                    }
+                    else {
+                        filters.put("or", kindsFilters);
+                    }
+
+                    mSearchPresenter.searchStories(filters);
+                    return false;
+                }
+            });
+        }
     }
 
     @Override

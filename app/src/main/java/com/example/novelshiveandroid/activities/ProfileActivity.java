@@ -13,10 +13,14 @@ import com.example.novelshiveandroid.presenters.ProfilePresenter;
 import com.example.novelshiveandroid.viewModels.ProfileViewModel;
 import com.example.novelshiveandroid.views.ProfileView;
 
+import java.util.ArrayList;
+
 public class ProfileActivity extends AppCompatActivity implements ProfileView {
 
     private Toolbar myToolbar;
     private TextView tvUsername;
+    private TextView tvEmail;
+    private TextView tvDescription;
 
     ProfilePresenter mProfilePresenter;
 
@@ -42,6 +46,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
 
     private void initUI() {
         this.tvUsername = findViewById(R.id.tv_username);
+        this.tvEmail = findViewById(R.id.tv_email);
+        this.tvDescription = findViewById(R.id.tv_description);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -52,5 +58,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
     @Override
     public void displayUserProfile(User user) {
         this.tvUsername.setText(user.getUsername());
+        this.tvEmail.setText(user.getEmail());
+        String description = Globals.convertToText((ArrayList<Double>)user.getDescription().get("data"));
+        this.tvDescription.setText(description);
     }
 }

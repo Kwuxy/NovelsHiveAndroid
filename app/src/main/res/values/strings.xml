@@ -60,6 +60,8 @@
     <!-- Profile activity -->
     <string name="edit">Edit</string>
     <string name="profileImg">ProfileImg</string>
+    <string name="email">Email :</string>
+    <string name="description">Description :</string>
 
     <string name="submit">Submit</string>
     <string name="placeHolderWriteComment">Write a comment...</string>

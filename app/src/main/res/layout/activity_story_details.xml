@@ -55,7 +55,7 @@
                     android:layout_alignBottom="@id/iv_backdrop"
                     android:layout_marginBottom="25dp"
                     android:ellipsize="end"
-                    android:maxLines="1"
+                    android:maxLines="2"
                     android:padding="5dp"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/detail_story_title" />

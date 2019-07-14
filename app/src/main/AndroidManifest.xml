@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.LightTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.AddChapterCommentActivity"></activity>
+        <activity android:name=".activities.MyStoriesActivity" />
+        <activity android:name=".activities.AddChapterCommentActivity" />
         <activity android:name=".activities.ChapterCommentsActivity" />
         <activity android:name=".activities.StoryDetailsActivity" />
         <activity android:name=".activities.ReaderActivity" />

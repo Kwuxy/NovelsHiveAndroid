@@ -31,7 +31,7 @@ public class SearchViewModel implements SearchPresenter {
     @Override
     public void searchStories(Map<String, Object> parameters) {
         Gson gson = new Gson();
-        String jsonFilters = "{\"where\" : " + gson.toJson(parameters) + "}";
+        String jsonFilters = "{\"where\" :{\"and\" : [" + gson.toJson(parameters) + "]}}";
         Call<List<Story>> call = jsonPlaceHolderApi.getStories(jsonFilters);
         call.enqueue(new Callback<List<Story>>() {
             @Override

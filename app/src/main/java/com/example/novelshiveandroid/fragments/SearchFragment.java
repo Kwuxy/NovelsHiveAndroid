@@ -54,7 +54,6 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
 
     public SearchFragment() {
         filters = new HashMap();
-        filters.put("or", Collections.EMPTY_LIST);
         // Required empty public constructor
     }
 
@@ -120,6 +119,11 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if(newText.isEmpty()){
+                    filters.remove("title");
+                    mSearchPresenter.searchStories(filters);
+                }
+
                 return false;
             }
         });
@@ -134,6 +138,12 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
         searchStories.clear();
         if (stories != null) {
             searchStories.addAll(stories);
+        }
+        if(filters.size() == 0){
+            rvSearchStories.setVisibility(View.GONE);
+        }
+        else {
+            rvSearchStories.setVisibility(View.VISIBLE);
         }
         fragmentStoriesAdapter.notifyDataSetChanged();
     }
@@ -163,7 +173,13 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
                         kindsFilters.add(mapfilter);
                         item.setChecked(true);
                     }
-                    filters.put("or", kindsFilters);
+                    if(kindsFilters.isEmpty()){
+                        filters.remove("or");
+                    }
+                    else {
+                        filters.put("or", kindsFilters);
+                    }
+
                     mSearchPresenter.searchStories(filters);
                     return false;
                 }

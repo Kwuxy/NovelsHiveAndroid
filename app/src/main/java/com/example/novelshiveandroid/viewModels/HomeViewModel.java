@@ -23,7 +23,7 @@ public class HomeViewModel implements HomePresenter {
 
     @Override
     public void searchStories(Map<String, Object> parameters) {
-        Call<List<Story>> call = jsonPlaceHolderApi.getStories(parameters);
+        Call<List<Story>> call = jsonPlaceHolderApi.getStories("");
         call.enqueue(new Callback<List<Story>>() {
             @Override
             public void onResponse(retrofit2.Call<List<Story>> call, Response<List<Story>> response) {

@@ -6,8 +6,6 @@ import com.example.novelshiveandroid.models.ReadingChapter;
 import com.example.novelshiveandroid.presenters.ReaderPresenter;
 import com.example.novelshiveandroid.views.ReaderView;
 
-import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,8 +21,8 @@ public class ReaderViewModel implements ReaderPresenter {
     }
 
     @Override
-    public void getReadingChapterInfos(int chapterId) {
-        Call<ReadingChapter> call = jsonPlaceHolderApi.getReadingChapterInfos(chapterId);
+    public void getReadingChapterInfos(int chapterId, int userId) {
+        Call<ReadingChapter> call = jsonPlaceHolderApi.getReadingChapterInfos(chapterId, userId);
         call.enqueue(new Callback<ReadingChapter>() {
             @Override
             public void onResponse(Call<ReadingChapter> call, Response<ReadingChapter> response) {
@@ -81,25 +79,6 @@ public class ReaderViewModel implements ReaderPresenter {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                System.out.print(t.getMessage());
-            }
-        });
-    }
-
-    @Override
-    public void checkIfStoryInUserFavorites(int userId, int storyId) {
-        Call<Favorite> call = jsonPlaceHolderApi.checkStoryInUserFavorites(userId, storyId);
-        call.enqueue(new Callback<Favorite>() {
-            @Override
-            public void onResponse(Call<Favorite> call, Response<Favorite> response) {
-                if (response.isSuccessful()) {
-                    mReaderView.getFavoriteId(response.body());
-                }
-                mReaderView.setInFavoriteValue(response.isSuccessful());
-            }
-
-            @Override
-            public void onFailure(Call<Favorite> call, Throwable t) {
                 System.out.print(t.getMessage());
             }
         });

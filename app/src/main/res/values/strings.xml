@@ -5,7 +5,7 @@
     <string name="title_login_activity">Login to NovelsHive</string>
     <string name="btn_sign_in_label">Sign In</string>
     <string name="et_password_hint">Password</string>
-    <string name="et_email_hint">Email</string>
+    <string name="et_username_hint">Username</string>
 
     <string name="error_field_required">Field required</string>
 
@@ -16,7 +16,8 @@
 
     <!-- Navigation drawer -->
     <string name="navigation_drawer_item_1">My profile</string>
-    <string name="navigation_drawer_item_2">Parameters</string>
+    <string name="navigation_drawer_item_2">My stories</string>
+    <string name="navigation_drawer_item_3">Parameters</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -48,6 +49,7 @@
 
     <string name="synopsis">Synopsis</string>
     <string name="chapters">Chapters</string>
+    <string name="kind">Kind</string>
 
     <string name="imgDescription">Hold story backdrop image"</string>
 
@@ -56,4 +58,14 @@
 
     <string name="action_comments">Comments</string>
     <string name="action_add_to_favorites">Add To favorites</string>
+
+    <!-- Profile activity -->
+    <string name="edit">Edit</string>
+    <string name="profileImg">ProfileImg</string>
+    <string name="email">Email :</string>
+    <string name="description">Description :</string>
+    <string name="btnMyStories">My stories</string>
+
+    <string name="submit">Submit</string>
+    <string name="placeHolderWriteComment">Write a comment...</string>
 </resources>

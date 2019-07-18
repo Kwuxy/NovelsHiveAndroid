@@ -17,6 +17,7 @@ import com.example.novelshiveandroid.models.TagList;
 import com.example.novelshiveandroid.models.Token;
 import com.example.novelshiveandroid.models.Universe;
 import com.example.novelshiveandroid.models.User;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,7 @@ public interface JsonPlaceHolderApi {
 
     //Get All Stories With And Without Search Sorting
     @GET("stories")
-    Call<List<Story>> getStories(@QueryMap Map<String, Object> parameters);
+    Call<List<Story>> getStories(@Query("filter") String filters);
 
     //Get Story Infos To Display Presentation Page
     @GET("stories/{id}")
@@ -91,7 +92,7 @@ public interface JsonPlaceHolderApi {
 
     //Get Reading Chapter Infos To Display It
     @GET("chapters/{id}/read")
-    Call<ReadingChapter> getReadingChapterInfos(@Path("id") int chapterId);
+    Call<ReadingChapter> getReadingChapterInfos(@Path("id") int chapterId, @Query("userId") int userId);
 
     //Get All Tags For Story Searching Filters
     @GET("tags")
@@ -116,6 +117,11 @@ public interface JsonPlaceHolderApi {
     //Get All Status For Story Searching Filters
     @GET("status")
     Call<List<Status>> getStatus();
+
+    //Get Story Image
+    @GET("containers/{container}/files/{file}/read")
+    Call<LinkedTreeMap> getStoryImageBuffer(@Path("container") String container, @Path("file") String filePath);
+
 
     //Check If User Has A Particular Story In favorite
     @GET("favorites/findOne")

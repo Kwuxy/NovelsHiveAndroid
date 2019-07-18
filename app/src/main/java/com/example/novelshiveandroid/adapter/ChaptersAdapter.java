@@ -47,9 +47,6 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChaptersAdapter.MyView
         TextView tvUpdateDate = myViewHolder.tvUpdateDate;
         tvUpdateDate.setText("Last update : " + DATE_FORMAT.format(chapter.getUpdate_date()));
 
-        TextView tvNumber = myViewHolder.tvNumber;
-        tvNumber.setText(String.format("" + chapter.getNumber()));
-
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,13 +64,11 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChaptersAdapter.MyView
 
         public TextView tvTitle;
         public TextView tvUpdateDate;
-        public TextView tvNumber;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_chapter_title);
             tvUpdateDate = itemView.findViewById(R.id.tv_chapter_update_date);
-            tvNumber = itemView.findViewById(R.id.tv_chapter_number);
         }
     }
 }

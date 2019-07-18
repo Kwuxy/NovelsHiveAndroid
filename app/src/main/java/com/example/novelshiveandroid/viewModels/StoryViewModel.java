@@ -1,5 +1,8 @@
 package com.example.novelshiveandroid.viewModels;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import com.example.novelshiveandroid.Globals;
 import com.example.novelshiveandroid.models.Chapter;
 import com.example.novelshiveandroid.models.Favorite;
@@ -10,6 +13,7 @@ import com.example.novelshiveandroid.models.Story;
 import com.example.novelshiveandroid.models.TagList;
 import com.example.novelshiveandroid.presenters.StoryPresenter;
 import com.example.novelshiveandroid.views.StoryView;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +43,7 @@ public class StoryViewModel implements StoryPresenter {
                     return;
                 }
                 mStoryView.displayStoryInfos(response.body());
+                getStoryImage(response.body().getPanel());
             }
 
             @Override
@@ -103,6 +108,33 @@ public class StoryViewModel implements StoryPresenter {
 
             @Override
             public void onFailure(Call<TagList> call, Throwable t) {
+                System.out.print(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getStoryImage(String filePath) {
+        Call<LinkedTreeMap> call = jsonPlaceHolderApi.getStoryImageBuffer("storyImage", filePath);
+        call.enqueue(new Callback<LinkedTreeMap>() {
+            @Override
+            public void onResponse(Call<LinkedTreeMap> call, Response<LinkedTreeMap> response) {
+                if (!response.isSuccessful()) {
+                    System.out.print("Code : " + response.code());
+                    return;
+                }
+                LinkedTreeMap result = (LinkedTreeMap)response.body().get("result");
+                LinkedTreeMap content = (LinkedTreeMap)result.get("content");
+                ArrayList<Double> imageData = (ArrayList<Double>)content.get("data");
+                byte[] data = new byte[imageData.size()];
+                for(int i = 0; i < imageData.size(); i++)
+                    data[i] = imageData.get(i).byteValue();
+                Bitmap bmpImage = BitmapFactory.decodeByteArray(data,0, data.length);
+                mStoryView.displayStoryImage(bmpImage);
+            }
+
+            @Override
+            public void onFailure(Call<LinkedTreeMap> call, Throwable t) {
                 System.out.print(t.getMessage());
             }
         });

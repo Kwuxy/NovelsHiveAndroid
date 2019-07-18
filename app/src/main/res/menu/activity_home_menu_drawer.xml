@@ -8,6 +8,10 @@
             android:id="@+id/activity_home_drawer_profile"
             android:icon="@drawable/ic_round_account_circle_24px"
             android:title="@string/navigation_drawer_item_1" />
+        <item
+            android:id="@+id/activity_home_drawer_my_stories"
+            android:icon="@drawable/ic_baseline_book_24px"
+            android:title="@string/navigation_drawer_item_2" />
     </group>
 
     <item android:title="Configuration">
@@ -16,7 +20,7 @@
                 <item
                     android:id="@+id/activity_home_drawer_parameters"
                     android:icon="@drawable/ic_baseline_settings_20px"
-                    android:title="@string/navigation_drawer_item_2" />
+                    android:title="@string/navigation_drawer_item_3" />
             </group>
         </menu>
     </item>

@@ -5,6 +5,7 @@ public interface StoryPresenter {
     void getStoryKind(int storyId);
     void getStoryRating(int storyId);
     void getStoryTags(int storyId);
+    void getStoryImage(String filePath);
     void getStoryChapters(int storyId);
     void getStoryChaptersCount(int storyId);
 

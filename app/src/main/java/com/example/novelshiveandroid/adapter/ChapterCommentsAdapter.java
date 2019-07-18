@@ -15,13 +15,15 @@ import com.example.novelshiveandroid.models.PublishedComment;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.novelshiveandroid.Globals.DATE_FORMAT;
+
 public class ChapterCommentsAdapter extends RecyclerView.Adapter<ChapterCommentsAdapter.MyViewHolder> {
 
-        private List<PublishedComment> chapterComments;
+    private List<PublishedComment> chapterComments;
 
-        public ChapterCommentsAdapter(List<PublishedComment> chapterComments) {
-            this.chapterComments = chapterComments;
-        }
+    public ChapterCommentsAdapter(List<PublishedComment> chapterComments) {
+        this.chapterComments = chapterComments;
+    }
 
     @NonNull
     @Override
@@ -40,8 +42,10 @@ public class ChapterCommentsAdapter extends RecyclerView.Adapter<ChapterComments
         tvUserName.setText(comment.getUsername());
 
         TextView tvTextComment = myViewHolder.tvTextComment;
-        //tvTextComment.setText(comment.getText());
         tvTextComment.setText(Globals.convertToText((ArrayList<Double>)comment.getText().get("data")));
+
+        TextView tvDate = myViewHolder.tvDate;
+        tvDate.setText(DATE_FORMAT.format(comment.getPublication_date()));
     }
 
     @Override
@@ -53,11 +57,13 @@ public class ChapterCommentsAdapter extends RecyclerView.Adapter<ChapterComments
 
         public TextView tvUserName;
         public TextView tvTextComment;
+        public TextView tvDate;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tvUserName = itemView.findViewById(R.id.tv_chapter_comment_user);
             tvTextComment = itemView.findViewById(R.id.tv_chapter_comment_text);
+            tvDate = itemView.findViewById(R.id.tv_chapter_comment_date);
         }
     }
 }

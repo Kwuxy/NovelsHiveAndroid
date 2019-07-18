@@ -88,11 +88,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.activity_home_drawer_profile:
                 intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.activity_home_drawer_my_stories:
+                intent = new Intent(this, MyStoriesActivity.class);
                 startActivity(intent);
                 break;
             case R.id.activity_home_drawer_parameters:

@@ -8,41 +8,39 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.novelshiveandroid.fragments.HomeFragment;
 import com.example.novelshiveandroid.R;
+import com.example.novelshiveandroid.activities.MyStoriesActivity;
 import com.example.novelshiveandroid.models.Story;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 import static com.example.novelshiveandroid.Globals.DATE_FORMAT;
 
-public class HomeStoryAdapter extends RecyclerView.Adapter<HomeStoryAdapter.MyViewHolder> {
+public class MyStoriesAdapter extends RecyclerView.Adapter<MyStoriesAdapter.MyViewHolder> {
 
-    private HomeFragment homeFragment;
-    private List<Story> stories;
+    private MyStoriesActivity myStoriesActivity;
+    private List<Story> myStories;
 
-    public HomeStoryAdapter(HomeFragment homeFragment, List<Story> stories) {
-        this.homeFragment = homeFragment;
-        this.stories = stories;
+    public MyStoriesAdapter(MyStoriesActivity myStoriesActivity, List<Story> myStories) {
+        this.myStoriesActivity = myStoriesActivity;
+        this.myStories = myStories;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public MyStoriesAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Context context = viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View storiesView = inflater.inflate(R.layout.item_story, viewGroup, false);
+        View storyView = inflater.inflate(R.layout.item_story, viewGroup, false);
 
-        return new MyViewHolder(storiesView);
+        return new MyViewHolder(storyView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
-        Story story = stories.get(i);
-        TextView tvTitle = myViewHolder.tvStoryTile;
+    public void onBindViewHolder(@NonNull MyStoriesAdapter.MyViewHolder myViewHolder, final int i) {
+        Story story = myStories.get(i);
+        TextView tvTitle = myViewHolder.tvStoryTitle;
         tvTitle.setText(story.getTitle());
 
         TextView tvStoryUpdateDate = myViewHolder.tvStoryUpdateDate;
@@ -51,25 +49,25 @@ public class HomeStoryAdapter extends RecyclerView.Adapter<HomeStoryAdapter.MyVi
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                homeFragment.onStoryItemClick(i);
+                myStoriesActivity.onStoryItemClick(i);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return stories.size();
+        return myStories.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tvStoryTile;
-        public TextView tvStoryUpdateDate;
+        private TextView tvStoryTitle;
+        private TextView tvStoryUpdateDate;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            tvStoryTile = itemView.findViewById(R.id.tv_story_title);
-            tvStoryUpdateDate = itemView.findViewById(R.id.tv_story_update_date);
+            this.tvStoryTitle = itemView.findViewById(R.id.tv_story_title);
+            this.tvStoryUpdateDate = itemView.findViewById(R.id.tv_story_update_date);
         }
     }
 }

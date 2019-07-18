@@ -57,11 +57,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
         return true;
     }
 
-    public void myStories(View view) {
-        Intent intent = new Intent(this, MyStoriesActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public void displayUserProfile(User user) {
         this.tvUsername.setText(user.getUsername());

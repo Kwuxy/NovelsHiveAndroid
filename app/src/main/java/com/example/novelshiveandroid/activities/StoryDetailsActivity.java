@@ -57,6 +57,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     private TextView tvStoryPublicationDate;
     private TextView tvStoryUpdateDate;
     private TextView tvStorySynopsis;
+    private TextView tvStoryKindTitle;
     private TextView tvStoryKind;
     private RecyclerView rvChapters;
     private ChaptersAdapter chaptersAdapter;
@@ -116,6 +117,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
         tvStoryPublicationDate = findViewById(R.id.tv_publication_date);
         tvStoryUpdateDate = findViewById(R.id.tv_update_date);
         tvStorySynopsis = findViewById(R.id.tv_synopsis_overview);
+        tvStoryKindTitle = findViewById(R.id.tv_kind_title);
         tvStoryKind = findViewById(R.id.tv_kind);
         rvChapters = findViewById(R.id.rv_chapters);
 
@@ -218,10 +220,11 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
     @Override
     public void displayStoryKind(Kind kind) {
-        if (kind != null) {
+        if (kind.getName() != null) {
             tvStoryKind.setText(kind.getName());
         }
         else {
+            tvStoryKindTitle.setVisibility(View.GONE);
             tvStoryKind.setVisibility(View.GONE);
         }
     }

@@ -57,6 +57,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     private TextView tvStoryPublicationDate;
     private TextView tvStoryUpdateDate;
     private TextView tvStorySynopsis;
+    private TextView tvStoryKind;
     private RecyclerView rvChapters;
     private ChaptersAdapter chaptersAdapter;
     private List<Chapter> chapters;
@@ -86,6 +87,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
         mStoryPresenter.getStoryInfos(storyId);
         mStoryPresenter.getStoryChapters(storyId);
         mStoryPresenter.getStoryTags(storyId);
+        mStoryPresenter.getStoryKind(storyId);
     }
 
     @Override
@@ -114,6 +116,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
         tvStoryPublicationDate = findViewById(R.id.tv_publication_date);
         tvStoryUpdateDate = findViewById(R.id.tv_update_date);
         tvStorySynopsis = findViewById(R.id.tv_synopsis_overview);
+        tvStoryKind = findViewById(R.id.tv_kind);
         rvChapters = findViewById(R.id.rv_chapters);
 
         chapters = new ArrayList<>();
@@ -215,7 +218,12 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
     @Override
     public void displayStoryKind(Kind kind) {
-
+        if (kind != null) {
+            tvStoryKind.setText(kind.getName());
+        }
+        else {
+            tvStoryKind.setVisibility(View.GONE);
+        }
     }
 
     @Override

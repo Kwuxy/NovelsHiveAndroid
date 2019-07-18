@@ -68,7 +68,6 @@
                     android:layout_below="@id/ll_dates"
                     android:layout_marginTop="5dp"
                     android:ellipsize="end"
-                    android:maxLines="12"
                     android:text="@string/synopsis"
                     android:textSize="@dimen/story_title_size"
                     android:textStyle="bold"
@@ -84,6 +83,26 @@
                     android:lineSpacingExtra="2dp"
                     android:textSize="@dimen/overview_text_size"
                     android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/tv_kind_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_synopsis_overview"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:text="@string/kind"
+                    android:textSize="@dimen/story_title_size"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/tv_kind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_kind_title"
+                    android:layout_marginTop="3dp"
+                    android:textSize="@dimen/overview_text_size" />
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>

@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +62,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
     private List<Chapter> chapters;
     private ProgressBar pbLoadBackDrop;
     private ProgressBar pbLoadChapters;
+    private LinearLayout llChips;
     private ChipGroup chipGroup;
 
     private ImageView storyImage;
@@ -125,6 +127,7 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
         pbLoadChapters.setVisibility(View.GONE);
 
         chipGroup = findViewById(R.id.tag_group);
+        llChips = findViewById(R.id.ll_chips);
     }
 
     @Override
@@ -222,28 +225,21 @@ public class StoryDetailsActivity extends AppCompatActivity implements StoryView
 
     @Override
     public void displayStoryTags(List<Tag> tags) {
-        for (int i = 0; i < tags.size(); i++) {
-            final String tagName = tags.get(i).getName();
-            final Chip chip = new Chip(this);
-            int paddingDp = (int) TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP, 10,
-                    getResources().getDisplayMetrics()
-            );
-            chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp);
-            chip.setText(tagName);
-            //chip.setCloseIconResource(R.drawable.ic_action_navigation_close);
-            //chip.setCloseIconEnabled(true);
-            //Added click listener on close icon to remove tag from ChipGroup
-            /*
-            chip.setOnCloseIconClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    tagList.remove(tagName);
-                    chipGroup.removeView(chip);
-                }
-            });
-            */
-            chipGroup.addView(chip);
+        if (!tags.isEmpty()) {
+            for (int i = 0; i < tags.size(); i++) {
+                final String tagName = tags.get(i).getName();
+                final Chip chip = new Chip(this);
+                int paddingDp = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, 10,
+                        getResources().getDisplayMetrics()
+                );
+                chip.setPadding(0, paddingDp, paddingDp, paddingDp);
+                chip.setText(tagName);
+                chipGroup.addView(chip);
+            }
+        }
+        else {
+            llChips.setVisibility(View.GONE);
         }
     }
 

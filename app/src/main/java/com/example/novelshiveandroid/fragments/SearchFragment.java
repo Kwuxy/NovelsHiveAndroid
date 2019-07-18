@@ -111,7 +111,11 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
                 //Get Value For Title Filters
                 if(filters.containsKey("title"))
                     filters.remove("title");
-                filters.put("title", query);
+                Map likeQuery = new HashMap();
+                likeQuery.put("like", "%" + query + "%");
+                Map fullLikeQuery = new HashMap();
+                fullLikeQuery.put("title", likeQuery);
+                filters.putAll(fullLikeQuery);
                 mSearchPresenter.searchStories(filters);
 
                 return false;

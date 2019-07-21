@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.novelshiveandroid.R;
 import com.example.novelshiveandroid.adapter.ChapterCommentsAdapter;
@@ -25,7 +26,7 @@ import static com.example.novelshiveandroid.Globals.KEY_CHAPTER_ID;
 public class ChapterCommentsActivity extends AppCompatActivity implements ChapterCommentsView {
 
     private Toolbar myToolbar;
-
+    private TextView tvNoComments;
     private RecyclerView rvChapterComments;
     private ChapterCommentsAdapter chapterCommentsAdapter;
     private List<PublishedComment> chapterComments;
@@ -64,6 +65,7 @@ public class ChapterCommentsActivity extends AppCompatActivity implements Chapte
     }
 
     private void initUI() {
+        tvNoComments = findViewById(R.id.tv_no_comments);
         rvChapterComments = findViewById(R.id.rv_chapter_comments);
         rvChapterComments.setLayoutManager(new LinearLayoutManager(this));
         chapterComments = new ArrayList<>();
@@ -98,6 +100,10 @@ public class ChapterCommentsActivity extends AppCompatActivity implements Chapte
             this.chapterComments.clear();
             this.chapterComments.addAll(chapterComments);
             chapterCommentsAdapter.notifyDataSetChanged();
+            this.tvNoComments.setVisibility(View.GONE);
+        }
+        else {
+            this.tvNoComments.setVisibility(View.VISIBLE);
         }
     }
 }

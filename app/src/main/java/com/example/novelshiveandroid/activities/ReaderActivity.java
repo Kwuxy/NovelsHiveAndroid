@@ -165,6 +165,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView, Sha
             return;
         }
         mReaderPresenter.getReadingChapterInfos(previousChapterId.intValue(), userId);
+        chapterId = nextChapterId.intValue();
     }
 
     @Override
@@ -174,6 +175,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView, Sha
             return;
         }
         mReaderPresenter.getReadingChapterInfos(nextChapterId.intValue(), userId);
+        chapterId = nextChapterId.intValue();
     }
 
     @Override
@@ -205,6 +207,8 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView, Sha
 
     private void setupSharedPreferences() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        loadSizeFromPreference(sharedPreferences);
+        loadFamilyFromPreferences(sharedPreferences);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -226,6 +230,13 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView, Sha
     private void loadFamilyFromPreferences(SharedPreferences sharedPreferences) {
         String family = sharedPreferences.getString(getString(R.string.pref_text_font_family_key), "sans-serif");
         tvChapterText.setTypeface(Typeface.create(family, Typeface.NORMAL));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 
     class MyGestureListener extends GestureDetector.SimpleOnGestureListener {

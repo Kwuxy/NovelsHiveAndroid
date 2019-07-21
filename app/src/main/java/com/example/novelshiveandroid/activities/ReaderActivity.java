@@ -165,6 +165,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView, Sha
             return;
         }
         mReaderPresenter.getReadingChapterInfos(previousChapterId.intValue(), userId);
+        chapterId = nextChapterId.intValue();
     }
 
     @Override
@@ -174,6 +175,7 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView, Sha
             return;
         }
         mReaderPresenter.getReadingChapterInfos(nextChapterId.intValue(), userId);
+        chapterId = nextChapterId.intValue();
     }
 
     @Override

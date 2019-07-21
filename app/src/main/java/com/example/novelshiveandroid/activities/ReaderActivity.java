@@ -2,6 +2,7 @@ package com.example.novelshiveandroid.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.widget.NestedScrollView;
@@ -212,11 +213,19 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView, Sha
         if (key.equals(getString(R.string.pref_text_font_size_key))) {
             this.loadSizeFromPreference(sharedPreferences);
         }
+        else if (key.equals(getString(R.string.pref_text_font_family_key))) {
+            this.loadFamilyFromPreferences(sharedPreferences);
+        }
     }
 
     private void loadSizeFromPreference(SharedPreferences sharedPreferences) {
         int size = Integer.parseInt(sharedPreferences.getString(getString(R.string.pref_text_font_size_key), "14"));
         tvChapterText.setTextSize(size);
+    }
+
+    private void loadFamilyFromPreferences(SharedPreferences sharedPreferences) {
+        String family = sharedPreferences.getString(getString(R.string.pref_text_font_family_key), "sans-serif");
+        tvChapterText.setTypeface(Typeface.create(family, Typeface.NORMAL));
     }
 
     class MyGestureListener extends GestureDetector.SimpleOnGestureListener {

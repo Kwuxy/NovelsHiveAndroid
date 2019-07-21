@@ -25,9 +25,11 @@
     <string name="action_settings">Settings</string>
     <string name="dark_theme">Dark theme</string>
     <string name="change_text_font_size">Change text font size</string>
+    <string name="change_text_font_family">Change text font family</string>
 
     <!-- Key name for text font size preference in SharedPreferences -->
     <string name="pref_text_font_size_key" translatable="false">fontSize</string>
+    <string name="pref_text_font_family_key" translatable="false">fontFamily</string>
     <string name="pref_dark_theme_bool_key" translatable="false">darkThemeBool</string>
 
     <string name="arrays__small">Small</string>

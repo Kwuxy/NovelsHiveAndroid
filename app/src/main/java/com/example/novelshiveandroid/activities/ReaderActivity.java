@@ -1,6 +1,9 @@
 package com.example.novelshiveandroid.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
@@ -29,7 +32,7 @@ import java.util.ArrayList;
 import static com.example.novelshiveandroid.Globals.KEY_CHAPTER_ID;
 import static com.example.novelshiveandroid.Globals.KEY_STORY_ID;
 
-public class ReaderActivity extends AppCompatActivity implements ReaderView {
+public class ReaderActivity extends AppCompatActivity implements ReaderView, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private Toolbar myToolbar;
     private TextView tvChapterText;
@@ -70,6 +73,8 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
         mReaderPresenter.getReadingChapterInfos(chapterId, userId);
 
         mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+
+        setupSharedPreferences();
     }
 
     @Override
@@ -171,8 +176,6 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
         mReaderPresenter.getReadingChapterInfos(nextChapterId.intValue(), userId);
     }
 
-
-
     @Override
     public void displayFavoriteAdding() {
         Toast.makeText(getApplicationContext(), "Story Added To Favorites", Toast.LENGTH_LONG).show();
@@ -197,6 +200,32 @@ public class ReaderActivity extends AppCompatActivity implements ReaderView {
             starFavorite.setIcon(R.drawable.ic_baseline_star_24px);
         }
         inFavorite = checkingResult;
+    }
+
+
+    private void setupSharedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.pref_text_font_size_key))) {
+            this.loadSizeFromPreference(sharedPreferences);
+        }
+        else if (key.equals(getString(R.string.pref_text_font_family_key))) {
+            this.loadFamilyFromPreferences(sharedPreferences);
+        }
+    }
+
+    private void loadSizeFromPreference(SharedPreferences sharedPreferences) {
+        int size = Integer.parseInt(sharedPreferences.getString(getString(R.string.pref_text_font_size_key), "14"));
+        tvChapterText.setTextSize(size);
+    }
+
+    private void loadFamilyFromPreferences(SharedPreferences sharedPreferences) {
+        String family = sharedPreferences.getString(getString(R.string.pref_text_font_family_key), "sans-serif");
+        tvChapterText.setTypeface(Typeface.create(family, Typeface.NORMAL));
     }
 
     class MyGestureListener extends GestureDetector.SimpleOnGestureListener {

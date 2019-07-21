@@ -7,10 +7,17 @@
         android:title="@string/dark_theme" />
 
     <ListPreference
-        android:defaultValue="Normal"
+        android:defaultValue="14"
         android:entries="@array/pref_message_font_size_entries"
         android:entryValues="@array/pref_text_font_size_values"
         android:key="@string/pref_text_font_size_key"
         android:title="@string/change_text_font_size" />
+
+    <ListPreference
+        android:defaultValue="sans-serif"
+        android:entries="@array/pref_message_font_family_entries"
+        android:entryValues="@array/pref_text_font_family_values"
+        android:key="@string/pref_text_font_family_key"
+        android:title="@string/change_text_font_family" />
 
 </PreferenceScreen>

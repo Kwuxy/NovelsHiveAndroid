@@ -109,20 +109,23 @@ public class SearchFragment extends Fragment implements com.example.novelshivean
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //Get Value For Title Filters
-                if(filters.containsKey("title"))
-                    filters.remove("title");
-                filters.put("title", query);
-                mSearchPresenter.searchStories(filters);
+
+                //mSearchPresenter.searchStories(filters);
 
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(newText.isEmpty()){
+                if(newText.isEmpty())
                     filters.remove("title");
-                    mSearchPresenter.searchStories(filters);
+                else {
+                    Map likeQuery = new HashMap();
+                    likeQuery.put("like", "%" + newText + "%");
+                    filters.put("title", likeQuery);
                 }
+                mSearchPresenter.searchStories(filters);
+
 
                 return false;
             }

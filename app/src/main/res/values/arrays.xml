@@ -8,10 +8,24 @@
     </string-array>
 
     <string-array name="pref_text_font_size_values">
-        <item>13</item>
+        <item>10</item>
+        <item>14</item>
         <item>16</item>
         <item>20</item>
-        <item>30</item>
+    </string-array>
+
+    <string-array name="pref_message_font_family_entries">
+        <item>Sans-serif</item>
+        <item>Cursive</item>
+        <item>Casual</item>
+        <item>Monospace</item>
+    </string-array>
+
+    <string-array name="pref_text_font_family_values">
+        <item>sans-serif</item>
+        <item>cursive</item>
+        <item>casual</item>
+        <item>monospace</item>
     </string-array>
 
 </resources>
